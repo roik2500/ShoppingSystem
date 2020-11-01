@@ -9,4 +9,5 @@ public class Account {
     Date open;
     Date closed;
     int balanced;
+    int roipeled;
 }
