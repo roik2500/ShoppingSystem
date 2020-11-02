@@ -22,22 +22,22 @@ public class Account {
         hash_Order = new HashMap<String,Order>();
         hash_Payment = new HashMap<String,Payment>();
     }
-    public void UpdateHashOrder(String id,Order order)
+    public void UpdateHashOrders(String id,Order order)
     {
         hash_Order.put(id,order);
     }
 
-    public void UpdateHashPayment(String id,Payment payment)
+    public void UpdateHashPayments(Payment payment)
     {
-        hash_Payment.put(id,payment);
+        hash_Payment.put(payment.getId(),payment);
     }
-    public void DeleteFromHashOrder(String id)
+    public void DeleteFromHashOrders(String id)
     {
         hash_Order.remove(id);
     }
-    public void DeleteFromHashPayment(String id)
+    public void DeleteFromHashPayments(Payment payment)
     {
-        hash_Payment.remove(id);
+        hash_Payment.remove(payment.getId());
     }
     public void Delete(){
         for (Payment p:hash_Payment.values())

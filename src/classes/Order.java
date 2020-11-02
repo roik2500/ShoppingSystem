@@ -24,20 +24,20 @@ public class Order {
         hash_Payment= new HashMap<String, Payment>();
         list_LineItem=new ArrayList<LineItem>();
     }
-    public void UpdateHashPayment(String id,Payment payment)
+    public void UpdateHashPayments(Payment payment)
     {
-        hash_Payment.put(id,payment);
+        hash_Payment.put(payment.getId(),payment);
     }
 
-    public void UpdateListLineItem(LineItem lineItem)
+    public void UpdateListLineItems(LineItem lineItem)
     {
         list_LineItem.add(lineItem);
     }
-    public void DeleteFromHashPayment(String id)
+    public void DeleteFromHashPayments(Payment payment)
     {
-        hash_Payment.remove(id);
+        hash_Payment.remove(payment.getId());
     }
-    public void DeleteListLineItem(LineItem lineItem)
+    public void DeleteListLineItems(LineItem lineItem)
     {
         list_LineItem.remove(lineItem);
     }
@@ -48,7 +48,7 @@ public class Order {
         for (LineItem l:list_LineItem)
             l.Delete();
         list_LineItem=null;
-        account.DeleteFromHashOrder(number);
+        account.DeleteFromHashOrders(number);
 
     }
 }
