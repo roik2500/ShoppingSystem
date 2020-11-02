@@ -7,7 +7,6 @@ public abstract class Payment {
     protected Date paid;
     protected float total;
     protected String details;
-
     protected Account account;
     protected Order order;
 

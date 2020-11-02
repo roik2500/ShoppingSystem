@@ -17,7 +17,6 @@ public class Customer {
         this.phone = null;
         this.email = null;
         this.account=new Account(id,this);
-        // add a commend that update the custome in Account to be this - roi peled
         this.webUser=null;
     }
 
