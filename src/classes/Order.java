@@ -33,10 +33,13 @@ public class Order {
     {
         list_LineItem.add(lineItem);
     }
+
+
     public void DeleteFromHashPayments(Payment payment)
     {
         hash_Payment.remove(payment.getId());
     }
+
     public void DeleteListLineItems(LineItem lineItem)
     {
         list_LineItem.remove(lineItem);

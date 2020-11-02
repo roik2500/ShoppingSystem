@@ -9,7 +9,7 @@ public class WebUser {
     Customer customer;
     ShoppingCart shoppingCart;
 
-    public WebUser(String login_id,Customer customer) {
+    public WebUser(String login_id) {
         this.login_id = login_id;
         this.password = null; //we will update this member after it
         this.state = UseState.New;
@@ -24,8 +24,8 @@ public class WebUser {
 
     public void Delete(){
         if(shoppingCart!=null)
-            shoppingCart=null;
-        customer.deletewebuser();
+            shoppingCart.Delete();
+        shoppingCart=null;
     }
 
 

@@ -14,14 +14,15 @@ public class Account {
     ShoppingCart shoppingCart;
     HashMap<String,Order> hash_Order;
     HashMap<String,Payment> hash_Payment;
+
     public Account(String id,Customer customer) {
         this.id = id;
-
         this.shoppingCart=new ShoppingCart(this,new WebUser(id,customer), new Date() );
         this.customer=customer;
         hash_Order = new HashMap<String,Order>();
         hash_Payment = new HashMap<String,Payment>();
     }
+
     public void UpdateHashOrders(String id,Order order)
     {
         hash_Order.put(id,order);
@@ -35,10 +36,14 @@ public class Account {
     {
         hash_Order.remove(id);
     }
+
+
     public void DeleteFromHashPayments(Payment payment)
     {
         hash_Payment.remove(payment.getId());
     }
+
+
     public void Delete(){
         for (Payment p:hash_Payment.values())
             p.Delete();
