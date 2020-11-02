@@ -9,7 +9,7 @@ public class WebUser {
     Customer customer;
     ShoppingCart shoppingCart;
 
-    public WebUser(String login_id) {
+    public WebUser(String login_id,Customer customer) {
         this.login_id = login_id;
         this.password = null; //we will update this member after it
         this.state = UseState.New;

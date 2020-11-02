@@ -11,8 +11,6 @@ public class Customer {
     WebUser webUser;
     Account account;
 
-
-
     public Customer(String id) {
         this.id = id;
         this.address = null;
