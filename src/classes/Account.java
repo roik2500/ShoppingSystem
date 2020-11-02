@@ -16,7 +16,8 @@ public class Account {
     HashMap<String,Payment> hash_Payment;
     public Account(String id,Customer customer) {
         this.id = id;
-        this.shoppingCart=new ShoppingCart(this,new Date());
+
+        this.shoppingCart=new ShoppingCart(this,new WebUser(id,customer), new Date() );
         this.customer=customer;
         hash_Order = new HashMap<String,Order>();
         hash_Payment = new HashMap<String,Payment>();
