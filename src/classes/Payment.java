@@ -12,8 +12,8 @@ public abstract class Payment {
     protected Order order;
 
     void Delete(){
-        this.order.UpdateHashPayments(this); //deleting the payment in hash-payment of order
-        this.account.UpdateHashPayments(this);
+        this.order.DeleteFromHashPayments(this); //deleting the payment in hash-payment of order
+        this.account.DeleteFromHashPayments(this);
     }
 
     //Getters
