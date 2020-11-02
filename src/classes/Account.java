@@ -4,16 +4,16 @@ import java.util.Date;
 import java.util.HashMap;
 
 public class Account {
-    String id;
-    String billing_address;
-    boolean is_closed;
-    Date open;
-    Date closed;
-    int balanced;
-    Customer customer;
-    ShoppingCart shoppingCart;
-    HashMap<String,Order> hash_Order;
-    HashMap<String,Payment> hash_Payment;
+    private String id;
+    private String billing_address;
+    private boolean is_closed;
+    private Date open;
+    private Date closed;
+    private int balanced;
+    private Customer customer;
+    private ShoppingCart shoppingCart;
+    private HashMap<String,Order> hash_Order;
+    private HashMap<String,Payment> hash_Payment;
 
     public Account(String id,Customer customer) {
         this.id = id;

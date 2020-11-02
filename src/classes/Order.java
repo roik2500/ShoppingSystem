@@ -8,15 +8,15 @@ import java.util.Date;
 import java.util.HashMap;
 
 public class Order {
-    String number;
-    Date ordered;
-    Date shipped;
-    Address ship_to;
-    OrderStatus status;
-    float total;
-    Account account;
-    HashMap<String,Payment> hash_Payment;
-    ArrayList<LineItem> list_LineItem;
+    private String number;
+    private Date ordered;
+    private Date shipped;
+    private Address ship_to;
+    private OrderStatus status;
+    private float total;
+    private Account account;
+    private HashMap<String,Payment> hash_Payment;
+    private ArrayList<LineItem> list_LineItem;
 
     public Order(String number,Account account) {
         this.number = number;
