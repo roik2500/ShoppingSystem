@@ -3,11 +3,11 @@ package classes;
 import enums.UseState;
 
 public class WebUser {
-    String login_id;
-    String password;
-    UseState state;
-    Customer customer;
-    ShoppingCart shoppingCart;
+    private String login_id;
+    private String password;
+    private UseState state;
+    private Customer customer;
+    private ShoppingCart shoppingCart;
 
     public WebUser(String login_id) {
         this.login_id = login_id;

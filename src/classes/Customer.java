@@ -4,12 +4,12 @@ import com.sun.xml.internal.ws.wsdl.writer.document.http.Address;
 
 public class Customer {
 
-    String id;
-    Address address;
-    String phone;
-    String email;
-    WebUser webUser;
-    Account account;
+   private String id;
+   private Address address;
+   private String phone;
+   private String email;
+   private WebUser webUser;
+   private Account account;
 
     public Customer(String id) {
         this.id = id;
