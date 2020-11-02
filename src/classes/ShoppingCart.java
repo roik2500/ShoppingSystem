@@ -3,10 +3,10 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class ShoppingCart {
-    Date created;
-    Account account;
-    WebUser webUser;
-    ArrayList<LineItem> list_LineItem;
+    private Date created;
+    private Account account;
+    private WebUser webUser;
+    private ArrayList<LineItem> list_LineItem;
 
     public ShoppingCart(Account account,WebUser webUser,Date created) {
         this.account=account;
