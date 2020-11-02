@@ -51,4 +51,48 @@ public class Order {
         account.DeleteFromHashOrders(number);
 
     }
+
+    public void setOrdered(Date ordered) {
+        this.ordered = ordered;
+    }
+
+    public void setShipped(Date shipped) {
+        this.shipped = shipped;
+    }
+
+    public void setShip_to(Address ship_to) {
+        this.ship_to = ship_to;
+    }
+
+    public void setStatus(OrderStatus status) {
+        this.status = status;
+    }
+
+    public void setTotal(float total) {
+        this.total = total;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public Date getOrdered() {
+        return ordered;
+    }
+
+    public Date getShipped() {
+        return shipped;
+    }
+
+    public Address getShip_to() {
+        return ship_to;
+    }
+
+    public OrderStatus getStatus() {
+        return status;
+    }
+
+    public float getTotal() {
+        return total;
+    }
 }

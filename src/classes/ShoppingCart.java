@@ -10,6 +10,7 @@ public class ShoppingCart {
 
     public ShoppingCart(Account account,WebUser webUser,Date created) {
         this.account=account;
+        webUser.setShoppingCart(this);
         this.webUser=webUser;
         this.created = created;
         list_LineItem=new ArrayList<LineItem>();
@@ -32,4 +33,9 @@ public class ShoppingCart {
         account.Delete();
         account=null;
     }
+
+    public Date getCreated() {
+        return created;
+    }
+
 }
