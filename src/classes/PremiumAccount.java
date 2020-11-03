@@ -22,8 +22,9 @@ public class PremiumAccount extends Account {
 
 
     public void DeletePremium(){
-        for (Product p:hash_Product.values())
-            p.premium_account=null;
+        hash_Product.clear();
+        //for (Product p:hash_Product.values())
+        //   p.premium_account=null;
         this.Delete();
     }
 }
