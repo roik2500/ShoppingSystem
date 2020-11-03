@@ -13,6 +13,8 @@ public abstract class Payment {
     void Delete(){
         this.order.DeleteFromHashPayments(this); //deleting the payment in hash-payment of order
         this.account.DeleteFromHashPayments(this);
+        this.account = null;
+        this.order = null;
     }
 
     //Getters
