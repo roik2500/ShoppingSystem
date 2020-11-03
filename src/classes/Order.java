@@ -51,7 +51,7 @@ public class Order {
         for (LineItem l:list_LineItem)
             l.Delete();
         list_LineItem=null;
-        account.DeleteFromHashOrders(number);
+        account.DeleteFromHashOrders(this);
 
     }
 
