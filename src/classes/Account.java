@@ -54,6 +54,19 @@ public class Account {
         customer=null;
     }
 
+
+    public void print(){
+        System.out.println("object name: Account, id:" + id );
+    }
+    public void printinfo(){
+        System.out.println("id:" + id );
+        System.out.println("billing_address:" + billing_address );
+        System.out.println("is_closed:" + is_closed );
+        System.out.println("open:" + open );
+        System.out.println("closed:" + closed );
+        System.out.println("balanced:" + balanced );
+        System.out.println("connected: shoppingCart, order, payment" );
+    }
     public String getId() {
         return id;
     }

@@ -54,7 +54,18 @@ public class Order {
         account.DeleteFromHashOrders(this);
 
     }
-
+    public void print(){
+        System.out.println("object name: Order, id:" + number );
+    }
+    public void printinfo(){
+        System.out.println("number:" + number );
+        System.out.println("ordered:" + ordered );
+        System.out.println("shipped:" + shipped );
+        System.out.println("ship_to:" + ship_to );
+        System.out.println("status:" + status );
+        System.out.println("total:" + total );
+        System.out.println("connected: account, LineItem, payment" );
+    }
     public void setOrdered(Date ordered) {
         this.ordered = ordered;
     }

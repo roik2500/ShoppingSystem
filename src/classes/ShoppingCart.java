@@ -34,8 +34,42 @@ public class ShoppingCart {
         account=null;
     }
 
+    public void print(){
+        System.out.println("object name: ShoppingCart, id:" + created );
+    }
+    public void printinfo(){
+        System.out.println("created:" + created );
+        System.out.println("connected: account, webuser, LineItem" );
+    }
     public Date getCreated() {
         return created;
     }
 
+    public Account getAccount() {
+        return account;
+    }
+
+    public WebUser getWebUser() {
+        return webUser;
+    }
+
+    public ArrayList<LineItem> getList_LineItem() {
+        return list_LineItem;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
+    }
+
+    public void setWebUser(WebUser webUser) {
+        this.webUser = webUser;
+    }
+
+    public void setList_LineItem(ArrayList<LineItem> list_LineItem) {
+        this.list_LineItem = list_LineItem;
+    }
 }
