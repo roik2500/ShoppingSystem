@@ -11,12 +11,12 @@ public class Product {
     private ArrayList<LineItem> listLineItems;
     private PremiumAccount premiumAccount;
 
-    public Product(String id, String name, Supplier supplier, PremiumAccount premiumAccount) {
+    public Product(String id, String name, Supplier supplier) {
         this.id = id;
         this.name = name;
         this.supplier = supplier;
         this.listLineItems = new ArrayList<LineItem>();
-        this.premiumAccount = premiumAccount;
+        this.premiumAccount = null;
     }
 
     public void UpdateListLineItem(LineItem lineItem) {
