@@ -36,9 +36,9 @@ public class Account {
         hasCustomer=false;
     }
 
-    public void UpdateHashOrders(String id,Order order)
+    public void UpdateHashOrders(Order order)
     {
-        hash_Order.put(id,order);
+        hash_Order.put(order.getNumber(),order);
     }
 
     public void UpdateHashPayments(Payment payment)
@@ -46,9 +46,9 @@ public class Account {
         hash_Payment.put(payment.getId(),payment);
     }
 
-    public void DeleteFromHashOrders(String id)
+    public void DeleteFromHashOrders(Order order)
     {
-        hash_Order.remove(id);
+        hash_Order.remove(order.getNumber());
     }
 
 
