@@ -17,6 +17,7 @@ public class Order {
     private Account account;
     private HashMap<String,Payment> hash_Payment;
     private ArrayList<LineItem> list_LineItem;
+    private boolean hasAccount;
 
     public Order(String number, Date ordered, Date shipped, Address ship_to, OrderStatus status, float total) {
         this.number = number;
@@ -27,11 +28,13 @@ public class Order {
         this.total = total;
         hash_Payment= new HashMap<String, Payment>();
         list_LineItem=new ArrayList<LineItem>();
+        hasAccount=false;
     }
 
     public Order() {
         hash_Payment= new HashMap<String, Payment>();
         list_LineItem=new ArrayList<LineItem>();
+        hasAccount=false;
     }
     public void UpdateHashPayments(Payment payment)
     {
@@ -83,8 +86,10 @@ public class Order {
     }
 
     public void setAccount(Account account) {
-        if(this.account==null)
+        if(this.account==null) {
             this.account = account;
+            hasAccount=true;
+        }
     }
 
     public void setOrdered(Date ordered) {
@@ -113,6 +118,22 @@ public class Order {
 
     public Date getOrdered() {
         return ordered;
+    }
+
+    public Account getAccount() {
+        return account;
+    }
+
+    public HashMap<String, Payment> getHash_Payment() {
+        return hash_Payment;
+    }
+
+    public ArrayList<LineItem> getList_LineItem() {
+        return list_LineItem;
+    }
+
+    public boolean HasAccount() {
+        return hasAccount;
     }
 
     public Date getShipped() {

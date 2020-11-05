@@ -14,6 +14,8 @@ public class Account {
     private ShoppingCart shoppingCart;
     private HashMap<String,Order> hash_Order;
     private HashMap<String,Payment> hash_Payment;
+    private boolean hasCustomer;
+    private boolean hasShoppingCart;
 
     public Account(String id, String billing_address,  Date open, int balanced) {
         this.id = id;
@@ -24,11 +26,14 @@ public class Account {
         this.balanced = balanced;
         hash_Order = new HashMap<String,Order>();
         hash_Payment = new HashMap<String,Payment>();
+        hasCustomer=false;
+        hasShoppingCart=false;
     }
 
     public Account() {
         hash_Order = new HashMap<String,Order>();
         hash_Payment = new HashMap<String,Payment>();
+        hasCustomer=false;
     }
 
     public void UpdateHashOrders(Order order)
@@ -52,12 +57,16 @@ public class Account {
     }
 
     public void setCustomer(Customer customer){
-        if(this.customer==null)
-            this.customer=customer;
+        if(this.customer==null) {
+            this.customer = customer;
+            hasCustomer=true;
+        }
     }
     public  void setShoppingCart(ShoppingCart shoppingCart){
-        if(this.shoppingCart==null)
-            this.shoppingCart=shoppingCart;
+        if(this.shoppingCart==null) {
+            this.shoppingCart = shoppingCart;
+            hasShoppingCart=true;
+        }
     }
     public void Delete(){
         for (Payment p:hash_Payment.values())
@@ -110,6 +119,18 @@ public class Account {
 
     public int getBalanced() {
         return balanced;
+    }
+
+    public ShoppingCart getShoppingCart() {
+        return shoppingCart;
+    }
+
+    public boolean HasCustomer() {
+        return hasCustomer;
+    }
+
+    public boolean HasShoppingCart() {
+        return hasShoppingCart;
     }
 
     public Customer getCustomer() {

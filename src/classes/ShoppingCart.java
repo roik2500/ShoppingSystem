@@ -7,15 +7,20 @@ public class ShoppingCart {
     private Account account;
     private WebUser webUser;
     private ArrayList<LineItem> list_LineItem;
-
+    private boolean hasWebUser;
+    private boolean hasAccount;
     public ShoppingCart() {
 
         list_LineItem = new ArrayList<LineItem>();
+        hasWebUser=false;
+        hasAccount=false;
     }
 
     public ShoppingCart(Date created) {
         this.created = created;
         list_LineItem = new ArrayList<LineItem>();
+        hasWebUser=false;
+        hasAccount=false;
     }
 
     public void UpdateListLineItem(LineItem lineItem)
@@ -62,6 +67,14 @@ public class ShoppingCart {
         return webUser;
     }
 
+    public boolean HasWebUser() {
+        return hasWebUser;
+    }
+
+    public boolean HasAccount() {
+        return hasAccount;
+    }
+
     public ArrayList<LineItem> getList_LineItem() {
         return list_LineItem;
     }
@@ -73,13 +86,17 @@ public class ShoppingCart {
     }
 
     public void setAccount(Account account) {
-        if(this.account==null)
+        if(this.account==null) {
             this.account = account;
+            hasAccount=true;
+        }
     }
 
     public void setWebUser(WebUser webUser) {
-        if(this.webUser==null)
-            this.webUser=webUser;
+        if(this.webUser==null) {
+            this.webUser = webUser;
+            hasWebUser=true;
+        }
     }
 
     public void setList_LineItem(ArrayList<LineItem> list_LineItem) {
