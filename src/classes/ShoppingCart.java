@@ -13,9 +13,8 @@ public class ShoppingCart {
         list_LineItem = new ArrayList<LineItem>();
     }
 
-    public ShoppingCart(Date created, Account account) {
+    public ShoppingCart(Date created) {
         this.created = created;
-        this.account = account;
         list_LineItem = new ArrayList<LineItem>();
     }
 
