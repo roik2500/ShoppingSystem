@@ -1,35 +1,99 @@
 package Main;
 
+import classes.Account;
+import classes.Product;
+import classes.Supplier;
+import classes.WebUser;
+import enums.UseState;
+
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
-	// write your code here
+
+
+
+
+        //when the user log in we add him to hasemap "connected" by the login_id
+        HashMap<String, WebUser> users= new HashMap<String, WebUser>();//all the users in the system
+
+        //////////Already exist in the System (נתון לנו)/////////////
+        Supplier moshe=new Supplier("123","Moshe");
+        Product bamba=new Product("Bamba","Bamba",moshe);
+        Product raman=new Product("Raman","Raman",moshe);
+        Account account=new Account("Dani","Dani123");//add s setter for id
+
+
+
+
 
         while (true){
             System.out.println("1: Add WebUser");
             System.out.println("2: Remove WebUser ");
             System.out.println("3: Log In");
             System.out.println("4: Log Out");
-            System.out.println("5: Make order");
-            System.out.println("6: Display order");
-            System.out.println("7: Add a Link Product");
-            System.out.println("8: Add Product ");
-            System.out.println( "9: Delete Product");
-            System.out.println("10: ShowAllObjects");
-            System.out.println("11: ShowObjectId ");
+            System.out.println("5: Add Product ");
+            System.out.println("6: Delete Product");
+            System.out.println("7: ShowAllObjects");
+            System.out.println("8: ShowObjectId ");
+
             Scanner scanner=new Scanner(System.in);
             int num=scanner.nextInt();
+            String num2=scanner.next();
 
             switch (num){
-                case 1:
-                    System.out.println("Please enter a Login Id");
-                    num=scanner.nextInt();
+                case 1://Add WebUser
+
+
+
+
+                case 2://Remove WebUser
+                    System.out.println("Please enter a login id for remove");
+                    num2=scanner.next();
+                    WebUser forremove=users.get(num2);
+                    users.remove(forremove);
+                    forremove.Delete();
+
+                case 3://Log In
+                    System.out.println("Please enter a login id");
+                    //just after the user is log in this menu will show
+                    System.out.println("1: Make order");
+                    System.out.println("2: Display order");
+                    System.out.println("3: Add a Link Product");
+                    int userchoos=scanner.nextInt();
+                    switch (userchoos){
+                        case 1:
+                    }
+
+                case 4://Log Out
+                    System.out.println("Please enter a login id");
+                    String id_log_out=scanner.next();
+                    WebUser log_out=users.get(id_log_out);
+                   log_out.setState(UseState.Blocked);//to check!!!!////???????????
+                    
+                case 5:// Add Product
+                    System.out.println("Enter the Product Id");
+                    String product_id=scanner.next();
+
+                    System.out.println("Enter the Name of Product");
+                    String product_name=scanner.next();
+
+                    System.out.println("Enter the Supplier Id");
+                    String supplier_id=scanner.next();
+
+                    System.out.println("Enter the Name of Supplier ");
+                    String supplier_name=scanner.next();
+
+                    Supplier new_supplier=new Supplier(supplier_id,supplier_name);
+                    Product new_product=new Product(product_id,product_name,new_supplier);
+
 
             }
 
         }
+
 
 
     }

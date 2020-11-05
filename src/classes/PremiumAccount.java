@@ -10,6 +10,7 @@ public class PremiumAccount extends Account {
         super(id, customer);
         hash_Product = new HashMap<String,Product>();
     }
+
     public void UpdateHashProduct(String id,Product product)
     {
         hash_Product.put(id,product);

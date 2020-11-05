@@ -16,8 +16,7 @@ public class Customer {
         this.address = null;
         this.phone = null;
         this.email = null;
-        this.account=new Account(id,this);
-        this.webUser=null;
+      this.account=new Account();
     }
 
     public void Delete(){

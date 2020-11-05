@@ -36,18 +36,19 @@ public class Account {
         hasCustomer=false;
     }
 
-    public void UpdateHashOrders(Order order)
+    public void UpdateHashOrders(String id,Order order)
     {
-        hash_Order.put(order.getNumber(),order);
+        hash_Order.put(id,order);
     }
 
     public void UpdateHashPayments(Payment payment)
     {
         hash_Payment.put(payment.getId(),payment);
     }
-    public void DeleteFromHashOrders(Order order)
+
+    public void DeleteFromHashOrders(String id)
     {
-        hash_Order.remove(order.getNumber());
+        hash_Order.remove(id);
     }
 
 
