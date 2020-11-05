@@ -38,13 +38,19 @@ public class ShoppingCart {
         account=null;
     }
 
-    public void print(){
+   /* public void print(){
         System.out.println("object name: ShoppingCart, id:" + created );
     }
     public void printinfo(){
         System.out.println("created:" + created );
         System.out.println("connected: account, webuser, LineItem" );
+    }*/
+
+    @Override
+    public String toString() {
+        return "ShoppingCart";
     }
+
     public Date getCreated() {
         return created;
     }

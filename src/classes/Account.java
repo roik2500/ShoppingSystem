@@ -15,12 +15,12 @@ public class Account {
     private HashMap<String,Order> hash_Order;
     private HashMap<String,Payment> hash_Payment;
 
-    public Account(String id, String billing_address, boolean is_closed, Date open, Date closed, int balanced) {
+    public Account(String id, String billing_address,  Date open, int balanced) {
         this.id = id;
         this.billing_address = billing_address;
-        this.is_closed = is_closed;
+        this.is_closed = true;
         this.open = open;
-        this.closed = closed;
+        this.closed = null;
         this.balanced = balanced;
         hash_Order = new HashMap<String,Order>();
         hash_Payment = new HashMap<String,Payment>();
@@ -70,7 +70,7 @@ public class Account {
     }
 
 
-    public void print(){
+    /*public void print(){
         System.out.println("object name: Account, id:" + id );
     }
     public void printinfo(){
@@ -81,7 +81,13 @@ public class Account {
         System.out.println("closed:" + closed );
         System.out.println("balanced:" + balanced );
         System.out.println("connected: shoppingCart, order, payment" );
+    }*/
+
+    @Override
+    public String toString() {
+        return "Account";
     }
+
     public String getId() {
         return id;
     }

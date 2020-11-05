@@ -64,7 +64,7 @@ public class Order {
         account.DeleteFromHashOrders(this);
 
     }
-    public void print(){
+    /*public void print(){
         System.out.println("object name: Order, id:" + number );
     }
     public void printinfo(){
@@ -75,6 +75,11 @@ public class Order {
         System.out.println("status:" + status );
         System.out.println("total:" + total );
         System.out.println("connected: account, LineItem, payment" );
+    }*/
+
+    @Override
+    public String toString() {
+        return "Order";
     }
 
     public void setAccount(Account account) {
