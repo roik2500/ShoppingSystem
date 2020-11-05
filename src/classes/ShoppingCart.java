@@ -8,13 +8,17 @@ public class ShoppingCart {
     private WebUser webUser;
     private ArrayList<LineItem> list_LineItem;
 
-    public ShoppingCart(Account account,WebUser webUser,Date created) {
-        this.account=account;
-        webUser.setShoppingCart(this);
-        this.webUser=webUser;
-        this.created = created;
-        list_LineItem=new ArrayList<LineItem>();
+    public ShoppingCart() {
+
+        list_LineItem = new ArrayList<LineItem>();
     }
+
+    public ShoppingCart(Date created, Account account) {
+        this.created = created;
+        this.account = account;
+        list_LineItem = new ArrayList<LineItem>();
+    }
+
     public void UpdateListLineItem(LineItem lineItem)
     {
         list_LineItem.add(lineItem);
@@ -57,16 +61,20 @@ public class ShoppingCart {
         return list_LineItem;
     }
 
+
+
     public void setCreated(Date created) {
         this.created = created;
     }
 
     public void setAccount(Account account) {
-        this.account = account;
+        if(this.account==null)
+            this.account = account;
     }
 
     public void setWebUser(WebUser webUser) {
-        this.webUser = webUser;
+        if(this.webUser==null)
+            this.webUser=webUser;
     }
 
     public void setList_LineItem(ArrayList<LineItem> list_LineItem) {

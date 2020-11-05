@@ -15,10 +15,18 @@ public class Account {
     private HashMap<String,Order> hash_Order;
     private HashMap<String,Payment> hash_Payment;
 
-    public Account(String id,Customer customer) {
+    public Account(String id, String billing_address, boolean is_closed, Date open, Date closed, int balanced) {
         this.id = id;
-        this.shoppingCart=new ShoppingCart(this,customer.getWebUser(), new Date() );
-        this.customer=customer;
+        this.billing_address = billing_address;
+        this.is_closed = is_closed;
+        this.open = open;
+        this.closed = closed;
+        this.balanced = balanced;
+        hash_Order = new HashMap<String,Order>();
+        hash_Payment = new HashMap<String,Payment>();
+    }
+
+    public Account() {
         hash_Order = new HashMap<String,Order>();
         hash_Payment = new HashMap<String,Payment>();
     }
@@ -43,7 +51,14 @@ public class Account {
         hash_Payment.remove(payment.getId());
     }
 
-
+    public void setCustomer(Customer customer){
+        if(this.customer==null)
+            this.customer=customer;
+    }
+    public  void setShoppingCart(ShoppingCart shoppingCart){
+        if(this.shoppingCart==null)
+            this.shoppingCart=shoppingCart;
+    }
     public void Delete(){
         for (Payment p:hash_Payment.values())
             p.Delete();

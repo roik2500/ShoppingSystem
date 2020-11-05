@@ -18,9 +18,18 @@ public class Order {
     private HashMap<String,Payment> hash_Payment;
     private ArrayList<LineItem> list_LineItem;
 
-    public Order(String number,Account account) {
+    public Order(String number, Date ordered, Date shipped, Address ship_to, OrderStatus status, float total) {
         this.number = number;
-        this.account=account;
+        this.ordered = ordered;
+        this.shipped = shipped;
+        this.ship_to = ship_to;
+        this.status = status;
+        this.total = total;
+        hash_Payment= new HashMap<String, Payment>();
+        list_LineItem=new ArrayList<LineItem>();
+    }
+
+    public Order() {
         hash_Payment= new HashMap<String, Payment>();
         list_LineItem=new ArrayList<LineItem>();
     }
@@ -44,6 +53,7 @@ public class Order {
     {
         list_LineItem.remove(lineItem);
     }
+
     public void Delete(){
         for (Payment p:hash_Payment.values())
             p.Delete();
@@ -66,6 +76,12 @@ public class Order {
         System.out.println("total:" + total );
         System.out.println("connected: account, LineItem, payment" );
     }
+
+    public void setAccount(Account account) {
+        if(this.account==null)
+            this.account = account;
+    }
+
     public void setOrdered(Date ordered) {
         this.ordered = ordered;
     }
