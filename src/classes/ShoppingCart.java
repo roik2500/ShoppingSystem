@@ -39,7 +39,11 @@ public class ShoppingCart {
     }
     public void printinfo(){
         System.out.println("created:" + created );
-        System.out.println("connected: account, webuser, LineItem" );
+        if(account!=null) System.out.println(account);
+        if(webUser!=null) System.out.println(webUser);
+        for (LineItem l:list_LineItem) {
+            System.out.println(l);
+        }
     }
     public Date getCreated() {
         return created;

@@ -83,7 +83,7 @@ public class Account {
     }
 
 
-    /*public void print(){
+    public void print(){
         System.out.println("object name: Account, id:" + id );
     }
     public void printinfo(){
@@ -93,8 +93,16 @@ public class Account {
         System.out.println("open:" + open );
         System.out.println("closed:" + closed );
         System.out.println("balanced:" + balanced );
-        System.out.println("connected: shoppingCart, order, payment" );
-    }*/
+        System.out.println("connected:" );
+        if(customer!=null) System.out.println(customer);
+        if(shoppingCart!=null) System.out.println(shoppingCart);
+        for (Order o:hash_Order.values()) {
+            System.out.println(o);
+        }
+        for (Payment p:hash_Payment.values()) {
+            System.out.println(p);
+        }
+    }
 
     @Override
     public String toString() {
