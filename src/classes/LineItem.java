@@ -33,9 +33,7 @@ public class LineItem {
         order.print();
         shoppingCart.printinfo();
         product.print();
-        
          */
-
     }
 
     public int getQuantity() {
