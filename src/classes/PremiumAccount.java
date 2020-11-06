@@ -34,6 +34,9 @@ public class PremiumAccount extends Account {
         hash_Product=null;
         this.Delete();
     }
+    public boolean isPremium(){
+        return true;
+    }
 
     public void printPremium(){
         /*

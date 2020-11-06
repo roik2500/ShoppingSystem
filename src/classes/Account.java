@@ -83,6 +83,10 @@ public class Account {
         customer=null;
     }
 
+    public boolean isPremium(){
+        return false;
+    }
+
 
     public void print(){
         System.out.println("object name: Account, id:" + id );

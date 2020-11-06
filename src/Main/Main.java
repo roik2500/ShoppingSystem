@@ -74,15 +74,23 @@ public class Main {
                                 System.out.println("1: Make order");
                                 System.out.println("2: Display order");
                                 System.out.println("3: Add a Link Product");
+                                System.out.println("3: Logout");
                                 int userchoos=scanner.nextInt();
                                 switch (userchoos){
                                     case 1://Make order
+                                        System.out.println("Please enter id of the seller");
+                                        num2=scanner.next();
+                                        WebUser seller=users.get(num2);
+                                        if(seller.getCustomer().getAccount().isPremium()){
+                                            
+                                        }
+
 
                                     case 2://Display order
 
                                     case 3://Link Product
 
-                                    case 4://Log Out
+                                    case 4://LogOut
                                         System.out.println("Please enter a login id");
                                         String id_log_out=scanner.next();
                                         WebUser log_out=users.get(id_log_out);
