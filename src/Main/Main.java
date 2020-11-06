@@ -22,7 +22,11 @@ public class Main {
         Supplier moshe=new Supplier("123","Moshe");
         Product bamba=new Product("Bamba","Bamba",moshe);
         Product raman=new Product("Raman","Raman",moshe);
-        Account account=new Account("Dani","Dani123");//add s setter for id
+        WebUser webUser=new WebUser("Dani");
+        webUser.setPassword("Dani123");
+        Account account=new Account();
+       //need to finish that!!!???!!
+
 
 
         while (true){

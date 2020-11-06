@@ -19,6 +19,13 @@ public class WebUser {
         this.shoppingCart=null;
     }
 
+    public void printinfo(){
+        System.out.println("ID:"+login_id);
+        System.out.println("Password:"+password);
+        System.out.println("State:"+state);
+        if(shoppingCart!=null){ System.out.println(shoppingCart); }
+        if(customer!=null){ System.out.println(customer);}
+    }
 
     //After the delete of webuser,we have to delete the interface of shoppingcart because only 1 interface of web user is allowed
     public void Delete(){

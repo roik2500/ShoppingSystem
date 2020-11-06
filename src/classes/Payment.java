@@ -26,22 +26,18 @@ public abstract class Payment {
     //Setters - ??
     public void setId(String id) {
         if(id !=null)
-            return;
-        this.id = id;
+            this.id =id;
     }
     public void setPaid(Date paid) {
         if(paid != null)
-            return;
-        this.paid = paid;
+            this.paid = paid;
     }
     public void setTotal(float total) {
         if( total >= 0 )
-            return;
-        this.total = total;
+            this.total = total;
     }
     public void setDetails(String details) {
         if(details != null)
-            return;
-        this.details = details;
+            this.details = details;
     }
 }

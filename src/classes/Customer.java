@@ -43,6 +43,18 @@ public class Customer {
         this.account = account;
     }
 
+    public void printinfo(){
+        System.out.println("ID:"+id);
+        System.out.println("Address:"+address);
+        System.out.println("Phone:"+phone);
+        System.out.println("Email:"+email);
+        if(webUser!=null){ System.out.println("WebUser:"+webUser);}
+        if(account!=null){ System.out.println("Account:"+account);
+        }
+    }
+
+
+
     public String getId() { return id; }
     public Address getAddress() { return address; }
     public String getPhone() { return phone; }
