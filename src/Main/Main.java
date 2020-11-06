@@ -39,6 +39,7 @@ public class Main {
             String num2=scanner.next();
             String login;
             String password;
+            Order last_order=null;
 
             switch (num){
                 case 1://Add WebUser
@@ -74,19 +75,36 @@ public class Main {
                                 System.out.println("1: Make order");
                                 System.out.println("2: Display order");
                                 System.out.println("3: Add a Link Product");
-                                System.out.println("3: Logout");
+                                System.out.println("4: Logout");
                                 int userchoos=scanner.nextInt();
                                 switch (userchoos){
                                     case 1://Make order
                                         System.out.println("Please enter id of the seller");
                                         num2=scanner.next();
                                         WebUser seller=users.get(num2);
-                                        if(seller.getCustomer().getAccount().isPremium()){
-                                            
+                                        if(seller.getCustomer().getAccount().isPremiumAccount()){
+                                            boolean buy=true;
+                                            while(buy==true) {
+                                                seller.getCustomer().getAccount().printorders();
+                                                System.out.println("Please enter id of the product you want");
+                                                String prod = scanner.next();
+                                                System.out.println("Please enter quantity");
+                                                String quan = scanner.next();
+
+                                                last_order=seller.getCustomer().getAccount().getorder(prod);
+                                                System.out.println("Do you want to continue buying?(yes/no");
+                                                String stay = scanner.next();
+                                                if (stay == "no")
+                                                    buy = false;
+                                            }
+                                            break;
+
                                         }
 
 
                                     case 2://Display order
+                                        last_order.printinfo();
+                                        break;
 
                                     case 3://Link Product
 

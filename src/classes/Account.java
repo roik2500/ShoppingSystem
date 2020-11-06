@@ -16,7 +16,8 @@ public class Account {
     protected HashMap<String,Payment> hash_Payment;
     protected boolean hasCustomer;
     protected boolean hasShoppingCart;
-    //protected  boolean isPremiumAccount;
+
+//protected  boolean isPremiumAccount;
 
     public Account(String id, String billing_address,  Date open, int balanced) {
         this.id = id;
@@ -31,6 +32,8 @@ public class Account {
         hasShoppingCart=false;
         //isPremiumAccount=false;
     }
+
+
 
     public Account() {
         hash_Order = new HashMap<String,Order>();
@@ -83,11 +86,13 @@ public class Account {
         customer=null;
     }
 
-    public boolean isPremium(){
-        return false;
+
+
+    public void printorders(){
+        for (Order o:hash_Order.values()) {
+            System.out.println(o);
+        }
     }
-
-
     public void print(){
         System.out.println("object name: Account, id:" + id );
     }
@@ -142,6 +147,10 @@ public class Account {
         return balanced;
     }
 
+    public HashMap<String, Order> getHash_Order() {
+        return hash_Order;
+    }
+
     public ShoppingCart getShoppingCart() {
         return shoppingCart;
     }
@@ -180,5 +189,9 @@ public class Account {
 
     public void setBalanced(int balanced) {
         this.balanced = balanced;
+    }
+
+    public Order getorder(String s){
+        return hash_Order.get(s);
     }
 }
