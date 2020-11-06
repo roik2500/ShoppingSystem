@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
+import static enums.UseState.Active;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -36,6 +38,8 @@ public class Main {
             Scanner scanner=new Scanner(System.in);
             int num=scanner.nextInt();
             String num2=scanner.next();
+            String login;
+            String password;
 
             switch (num){
                 case 1://Add WebUser
@@ -59,20 +63,32 @@ public class Main {
 
                 case 3://Log In
                     System.out.println("Please enter a login id");
-                    //just after the user is log in this menu will show
-                    System.out.println("1: Make order");
-                    System.out.println("2: Display order");
-                    System.out.println("3: Add a Link Product");
-                    int userchoos=scanner.nextInt();
-                    switch (userchoos){
-                        case 1:
+                    login=scanner.next();
+                    if(users.containsKey(login)) {
+                        System.out.println("Please enter a Password");
+                        password=scanner.next();
+                        if(users.get(login).getPassword()==password){
+                            users.get(login).setState(Active);
+                            System.out.println("1: Make order");
+                            System.out.println("2: Display order");
+                            System.out.println("3: Add a Link Product");
+                            int userchoos=scanner.nextInt();
+                            switch (userchoos){
+                                case 1://Make order
+
+                                case 2://Display order
+
+                                case 3://Link Product
+
+                                case 4://Log Out
+                                    System.out.println("Please enter a login id");
+                                    String id_log_out=scanner.next();
+                                    WebUser log_out=users.get(id_log_out);
+                                    log_out.setState(UseState.Blocked);//to check!!!!////???????????
+                            }
+                        }
                     }
 
-                case 4://Log Out
-                    System.out.println("Please enter a login id");
-                    String id_log_out=scanner.next();
-                    WebUser log_out=users.get(id_log_out);
-                   log_out.setState(UseState.Blocked);//to check!!!!////???????????
                     
                 case 5:// Add Product
                     System.out.println("Enter the Product Id");
