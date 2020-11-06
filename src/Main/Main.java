@@ -16,7 +16,7 @@ public class Main {
         HashMap<String,Product> AllProducts= new HashMap<String, Product>();
         HashMap<String,Object> AllObjects= new HashMap<String, Object>();
         HashMap<String, ArrayList<String>> IdList= new HashMap<String, ArrayList<String>>();
-
+        Account connected;
 
         //////////Already exist in the System (נתון לנו)/////////////
         Supplier moshe=new Supplier("123","Moshe");
@@ -29,11 +29,10 @@ public class Main {
             System.out.println("1: Add WebUser");
             System.out.println("2: Remove WebUser ");
             System.out.println("3: Log In");
-            System.out.println("4: Log Out");
-            System.out.println("5: Add Product ");
-            System.out.println("6: Delete Product");
-            System.out.println("7: ShowAllObjects");
-            System.out.println("8: ShowObjectId ");
+            System.out.println("4: Add Product ");
+            System.out.println("5: Delete Product");
+            System.out.println("6: ShowAllObjects");
+            System.out.println("7: ShowObjectId ");
 
             Scanner scanner=new Scanner(System.in);
             int num=scanner.nextInt();
@@ -68,29 +67,36 @@ public class Main {
                         System.out.println("Please enter a Password");
                         password=scanner.next();
                         if(users.get(login).getPassword()==password){
-                            users.get(login).setState(Active);
-                            System.out.println("1: Make order");
-                            System.out.println("2: Display order");
-                            System.out.println("3: Add a Link Product");
-                            int userchoos=scanner.nextInt();
-                            switch (userchoos){
-                                case 1://Make order
+                            account=users.get(login).getCustomer().getAccount();//This is
+                            while (true){
+                                users.get(login).setState(Active);
+                                System.out.println("1: Make order");
+                                System.out.println("2: Display order");
+                                System.out.println("3: Add a Link Product");
+                                int userchoos=scanner.nextInt();
+                                switch (userchoos){
+                                    case 1://Make order
 
-                                case 2://Display order
+                                    case 2://Display order
 
-                                case 3://Link Product
+                                    case 3://Link Product
 
-                                case 4://Log Out
-                                    System.out.println("Please enter a login id");
-                                    String id_log_out=scanner.next();
-                                    WebUser log_out=users.get(id_log_out);
-                                    log_out.setState(UseState.Blocked);//to check!!!!////???????????
+                                    case 4://Log Out
+                                        System.out.println("Please enter a login id");
+                                        String id_log_out=scanner.next();
+                                        WebUser log_out=users.get(id_log_out);
+                                        log_out.setState(UseState.Blocked);
+                                        break;
+                                }
                             }
+
                         }
+
                     }
 
 
-                case 5:// Add Product
+
+                case 4:// Add Product
                     System.out.println("Enter the Product Id");
                     String product_id=scanner.next();
 
@@ -106,6 +112,13 @@ public class Main {
                     Supplier new_supplier=new Supplier(supplier_id,supplier_name);
                     Product new_product=new Product(product_id,product_name,new_supplier);
 
+                    AllProducts.put(product_id,new_product);
+                    AllObjects.put(product_id,new_product);
+                    AllObjects.put(supplier_id,new_supplier);
+                    ArrayList<String> s=new ArrayList<String>();
+                    s.add(supplier_id);
+                    IdList.put(product_id,s);
+                    break;
 
             }
 
