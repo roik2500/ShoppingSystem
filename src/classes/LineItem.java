@@ -26,6 +26,18 @@ public class LineItem {
         product=null;
     }
 
+    public void print(){
+        /*
+        System.out.println("quantity:" + quantity );
+        System.out.println("price:" + price );
+        order.print();
+        shoppingCart.printinfo();
+        product.print();
+        
+         */
+
+    }
+
     public int getQuantity() {
         return quantity;
     }
