@@ -1,8 +1,5 @@
 package Main;
-import classes.Account;
-import classes.Product;
-import classes.Supplier;
-import classes.WebUser;
+import classes.*;
 import enums.UseState;
 
 import java.util.ArrayList;
@@ -49,9 +46,16 @@ public class Main {
                 case 2://Remove WebUser
                     System.out.println("Please enter a login id for remove");
                     num2=scanner.next();
-                    WebUser forremove=users.get(num2);
-                    users.remove(forremove);
-                    forremove.Delete();
+                    WebUser forRemove=users.get(num2);
+                    ArrayList<String> templist = IdList.get(num2);
+                    for (String s:templist) {
+                        if(AllObjects.containsKey(s))
+                            AllObjects.remove(s);
+                    }
+                    IdList.remove(num2);
+                    AllObjects.remove(num2);
+                    forRemove.Delete();
+                    users.remove(num2);
 
                 case 3://Log In
                     System.out.println("Please enter a login id");
