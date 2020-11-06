@@ -61,6 +61,7 @@ public class Main {
                     users.remove(num2);
 
                 case 3://Log In
+                    boolean out=true;
                     System.out.println("Please enter a login id");
                     login=scanner.next();
                     if(users.containsKey(login)) {
@@ -68,7 +69,7 @@ public class Main {
                         password=scanner.next();
                         if(users.get(login).getPassword()==password){
                             account=users.get(login).getCustomer().getAccount();//This is
-                            while (true){
+                            while (out==true){
                                 users.get(login).setState(Active);
                                 System.out.println("1: Make order");
                                 System.out.println("2: Display order");
@@ -86,6 +87,7 @@ public class Main {
                                         String id_log_out=scanner.next();
                                         WebUser log_out=users.get(id_log_out);
                                         log_out.setState(UseState.Blocked);
+                                        out=false;
                                         break;
                                 }
                             }
@@ -119,6 +121,24 @@ public class Main {
                     s.add(supplier_id);
                     IdList.put(product_id,s);
                     break;
+
+
+                case 5://Delete Product
+                    System.out.println("Please enter a product id tp delete");
+                    num2=scanner.next();
+                    Product product=AllProducts.get(num2);
+                    ArrayList<String> tempproduct = IdList.get(num2);
+                    for (String a:tempproduct) {
+                        if(AllObjects.containsKey(a))
+                            AllObjects.remove(a);
+                    }
+                    IdList.remove(num2);
+                    AllObjects.remove(num2);
+                    product.Delete();
+                    AllProducts.remove(num2);
+                    break;
+
+
 
 
                 case 7://ShowObjectById
