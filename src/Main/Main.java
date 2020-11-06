@@ -1,32 +1,25 @@
 package Main;
-
 import classes.Account;
 import classes.Product;
 import classes.Supplier;
 import classes.WebUser;
 import enums.UseState;
-
 import java.util.HashMap;
 import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
-
-
-
-
-        //when the user log in we add him to hasemap "connected" by the login_id
+        //when the user log in we add him to hashmap "connected" by the login_id
         HashMap<String, WebUser> users= new HashMap<String, WebUser>();//all the users in the system
+
+
 
         //////////Already exist in the System (נתון לנו)/////////////
         Supplier moshe=new Supplier("123","Moshe");
         Product bamba=new Product("Bamba","Bamba",moshe);
         Product raman=new Product("Raman","Raman",moshe);
         Account account=new Account("Dani","Dani123");//add s setter for id
-
-
-
 
 
         while (true){
