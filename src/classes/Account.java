@@ -4,18 +4,19 @@ import java.util.Date;
 import java.util.HashMap;
 
 public class Account {
-    private String id;
-    private String billing_address;
-    private boolean is_closed;
-    private Date open;
-    private Date closed;
-    private int balanced;
-    private Customer customer;
-    private ShoppingCart shoppingCart;
-    private HashMap<String,Order> hash_Order;
-    private HashMap<String,Payment> hash_Payment;
-    private boolean hasCustomer;
-    private boolean hasShoppingCart;
+    protected String id;
+    protected String billing_address;
+    protected boolean is_closed;
+    protected Date open;
+    protected Date closed;
+    protected int balanced;
+    protected Customer customer;
+    protected ShoppingCart shoppingCart;
+    protected HashMap<String,Order> hash_Order;
+    protected HashMap<String,Payment> hash_Payment;
+    protected boolean hasCustomer;
+    protected boolean hasShoppingCart;
+    //protected  boolean isPremiumAccount;
 
     public Account(String id, String billing_address,  Date open, int balanced) {
         this.id = id;
@@ -28,6 +29,7 @@ public class Account {
         hash_Payment = new HashMap<String,Payment>();
         hasCustomer=false;
         hasShoppingCart=false;
+        //isPremiumAccount=false;
     }
 
     public Account() {
@@ -38,7 +40,8 @@ public class Account {
 
     public void UpdateHashOrders(Order order)
     {
-        hash_Order.put(order.getNumber(),order);
+        if(hash_Order.containsKey(order.getNumber()))
+            hash_Order.put(order.getNumber(),order);
     }
 
     public void UpdateHashPayments(Payment payment)
@@ -98,6 +101,10 @@ public class Account {
         return "Account";
     }
 
+    public boolean isPremiumAccount() {
+        return false;
+    }
+
     public String getId() {
         return id;
     }
@@ -140,6 +147,10 @@ public class Account {
 
     public void setBilling_address(String billing_address) {
         this.billing_address = billing_address;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public void setIs_closed(boolean is_closed) {

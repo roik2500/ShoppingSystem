@@ -22,6 +22,10 @@ public class PremiumAccount extends Account {
         hash_Product.remove(id);
     }
 
+    @Override
+    public boolean isPremiumAccount() {
+        return true;
+    }
 
     public void DeletePremium(){
         //hash_Product.clear();
