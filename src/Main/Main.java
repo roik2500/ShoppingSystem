@@ -120,6 +120,53 @@ public class Main {
                     IdList.put(product_id,s);
                     break;
 
+
+                case 7://ShowObjectById
+                    System.out.println("Enter the Object Id");
+                    String object_id=scanner.next();
+                    Object ob =AllObjects.get(object_id);
+                    if(ob instanceof PremiumAccount){
+                        PremiumAccount temp=(PremiumAccount)ob;
+                        temp.printinfo();
+                    }
+                    else if(ob instanceof Account){
+                       Account temp=(Account)ob;
+                        temp.printinfo();
+                    }
+                    else if(ob instanceof Customer){
+                        Customer temp=(Customer)ob;
+                        temp.printinfo();
+                    }
+                    else if(ob instanceof Payment){
+                        Payment temp=(Payment)ob;
+                        temp.printinfo();
+                    }
+                    else if(ob instanceof LineItem){
+                        LineItem temp=(LineItem)ob;
+                        temp.printinfo();
+                    }
+                    else if(ob instanceof Order){
+                        Order temp=(Order)ob;
+                        temp.printinfo();
+                    }
+
+                    else if(ob instanceof Product){
+                        Product temp=(Product)ob;
+                        temp.printinfo();
+                    }
+                    else if(ob instanceof ShoppingCart){
+                        ShoppingCart temp=(ShoppingCart)ob;
+                        temp.printinfo();
+                    }
+                    else if(ob instanceof Supplier){
+                        Supplier temp=(Supplier)ob;
+                        temp.printinfo();
+                    }
+                    else if(ob instanceof WebUser){
+                        WebUser temp=(WebUser)ob;
+                        temp.printinfo();
+                    }
+
             }
 
         }
