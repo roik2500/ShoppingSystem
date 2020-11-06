@@ -82,9 +82,9 @@ public class Main {
                                         System.out.println("Please enter id of the seller");
                                         num2=scanner.next();
                                         WebUser seller=users.get(num2);
-                                        if(seller.getCustomer().getAccount().isPremiumAccount()){
-                                            boolean buy=true;
-                                            while(buy==true) {
+                                        if(seller.getCustomer().getAccount().isPremiumAccount()) {
+                                            boolean buy = true;
+                                            while (buy == true) {
                                                 seller.getCustomer().getAccount().printorders();
                                                 System.out.println("Please enter id of the product you want");
                                                 String prod = scanner.next();
@@ -95,15 +95,21 @@ public class Main {
                                                 need to put in buyer?
                                                  */
 
-                                                last_order=seller.getCustomer().getAccount().getorder(prod);
+                                                last_order = seller.getCustomer().getAccount().getorder(prod);
                                                 System.out.println("Do you want to continue buying?(yes/no");
                                                 String stay = scanner.next();
                                                 if (stay == "no")
                                                     buy = false;
                                             }
+                                        }
+                                        else{
+                                            System.out.println("This is not a premium account");
+                                        }
+
+
                                             break;
 
-                                        }
+
 
 
                                     case 2://Display order
