@@ -4,6 +4,8 @@ import classes.Product;
 import classes.Supplier;
 import classes.WebUser;
 import enums.UseState;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -12,7 +14,9 @@ public class Main {
     public static void main(String[] args) {
         //when the user log in we add him to hashmap "connected" by the login_id
         HashMap<String, WebUser> users= new HashMap<String, WebUser>();//all the users in the system
-
+        HashMap<String,Product> AllProducts= new HashMap<String, Product>();
+        HashMap<String,Object> AllObjects= new HashMap<String, Object>();
+        HashMap<String, ArrayList<String>> IdList= new HashMap<String, ArrayList<String>>();
 
 
         //////////Already exist in the System (נתון לנו)/////////////
