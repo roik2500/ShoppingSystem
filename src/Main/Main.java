@@ -90,6 +90,10 @@ public class Main {
                                                 String prod = scanner.next();
                                                 System.out.println("Please enter quantity");
                                                 String quan = scanner.next();
+                                                /*
+                                                need to remove from seller?
+                                                need to put in buyer?
+                                                 */
 
                                                 last_order=seller.getCustomer().getAccount().getorder(prod);
                                                 System.out.println("Do you want to continue buying?(yes/no");
