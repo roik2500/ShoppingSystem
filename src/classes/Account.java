@@ -40,13 +40,14 @@ public class Account {
 
     public void UpdateHashOrders(Order order)
     {
-        if(hash_Order.containsKey(order.getNumber()))
+        if(!hash_Order.containsKey(order.getNumber()))
             hash_Order.put(order.getNumber(),order);
     }
 
     public void UpdateHashPayments(Payment payment)
     {
-        hash_Payment.put(payment.getId(),payment);
+        if(!hash_Payment.containsKey(payment.getId()))
+            hash_Payment.put(payment.getId(),payment);
     }
 
     public void DeleteFromHashOrders(Order order)
