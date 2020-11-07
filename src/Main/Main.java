@@ -39,12 +39,12 @@ public class Main {
         AllObjects.put("4",webUser);
         IdListUsers.put(webUser.getLogin_id(),new ArrayList<String>());
         IdListUsers.get(webUser.getLogin_id()).add("4");
-        Customer customer =new Customer(webUser);
+        Customer customer1 =new Customer(webUser);
         Account account=new Account();
-        customer.setAccount(account);
-        account.setCustomer(customer);
-        ShoppingCart shoppingCart =new ShoppingCart(account,webUser,new Date());
-        account.setShoppingCart(shoppingCart);
+        customer1.setAccount(account);
+        account.setCustomer(customer1);
+        ShoppingCart shoppingCart1 =new ShoppingCart(account,webUser,new Date());
+        account.setShoppingCart(shoppingCart1);
        //need to finish that!!!???!!
         int counter = 6; // counter global
 
