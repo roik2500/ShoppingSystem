@@ -54,7 +54,6 @@ public class Main {
        //need to finish that!!!???!!
         int counter = 8; // counter global
 
-
         while (true){
             System.out.println("1: Add WebUser");
             System.out.println("2: Remove WebUser ");
@@ -149,7 +148,6 @@ public class Main {
                         IdListUsers.get(webUser.getLogin_id()).add(Integer.toString(counter));
                         counter++;
 
-
                         webUser.setShoppingCart(shoppingCart);
                         webUser.setCustomer(customer);
                         account1.setShoppingCart(shoppingCart);
@@ -230,8 +228,7 @@ public class Main {
                                     case 4://LogOut
                                         System.out.println("Please enter a login id");
                                         String id_log_out = scanner.next();
-                                        WebUser log_out = users.get(id_log_out);
-                                        log_out.setState(UseState.Blocked);
+                                         getWebUser(id_log_out,AllObjects,IdListUsers).setState(UseState.Blocked);
                                         out = false;
                                         break;
                                 }
@@ -261,12 +258,14 @@ public class Main {
                     Supplier new_supplier = new Supplier(supplier_id, supplier_name);
                     Product new_product = new Product(product_id, product_name, Integer.parseInt(product_price), new_supplier);
 
-                    AllProducts.put(product_id, new_product);
-                    AllObjects.put(product_id, new_product);
-                    AllObjects.put(supplier_id, new_supplier);
-                    ArrayList<String> s = new ArrayList<String>();
-                    s.add(supplier_id);
-                    IdList.put(product_id, s);
+                    //add supplier and product to our data structure
+                    AllObjects.put(Integer.toString(counter), new_product);
+                    counter++;
+                    AllObjects.put(Integer.toString(counter), new_supplier);
+                    counter++;
+                    IdListProducts.put(product_id,new ArrayList<String>());
+                    IdListProducts.get(product_id).add(Integer.toString(counter));
+                    counter++;
                     break;
 
 
@@ -290,14 +289,14 @@ public class Main {
                         Object Ob = AllObjects.get(idO);
                         System.out.println("Object's id:" + idO + ", object's name: " + Ob.toString());
                     }
-                    for (String Id : users.keySet()) {
-                        WebUser user = users.get(Id);
-                        System.out.println("Object's id:" + Id + ", object's name: " + user.toString());
+             /*       for (String Id : IdListUsers.keySet()) {
+                       WebUser webUser1=(WebUser)AllObjects.get(IdListProducts.get(Id));
+                        System.out.println("Object's id:" + Id + ", object's name: " + webUser.toString());
                     }
                     for (String idP : AllProducts.keySet()) {
                         Product proud = AllProducts.get(idP);
                         System.out.println("Object's id:" + idP + ", object's name: " + proud.toString());
-                    }
+                    }*/
 
 
                 case 7://ShowObjectById
