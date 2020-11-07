@@ -193,7 +193,7 @@ public class Main {
                                     case 1://Make order
                                         System.out.println("Please enter id of the seller");
                                         loginIDToRemove = scanner.next();
-                                        WebUser seller = users.get(loginIDToRemove);
+                                        WebUser seller = getWebUser(loginIDToRemove,AllObjects,IdListUsers);
                                         if (seller.getCustomer().getAccount().isPremiumAccount()) {
                                             boolean buy = true;
                                             while (buy == true) {
@@ -272,17 +272,16 @@ public class Main {
 
                 case 5://Delete Product
                     System.out.println("Please enter a product id tp delete");
-                    loginIDToRemove = scanner.next();
-                    Product product = AllProducts.get(loginIDToRemove);
-                    ArrayList<String> tempproduct = IdList.get(loginIDToRemove);
-                    for (String a : tempproduct) {
-                        if (AllObjects.containsKey(a))
-                            AllObjects.remove(a);
+                    String productIDToRemove = scanner.next();
+                    Product product = getProduct(productIDToRemove,AllObjects,IdListProducts);
+                    ArrayList<String> templistProduct = IdListProducts.get(productIDToRemove);
+                    for (String p : templistProduct) {
+                        if (AllObjects.containsKey(p))
+                            AllObjects.remove(p);
                     }
-                    IdList.remove(loginIDToRemove);
-                    AllObjects.remove(loginIDToRemove);
+                    IdListProducts.remove(productIDToRemove);
                     product.Delete();
-                    AllProducts.remove(loginIDToRemove);
+
                     break;
 
 
