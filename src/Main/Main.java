@@ -95,23 +95,10 @@ public class Main {
 
                     //Building the objects:
                     WebUser WebUser = new WebUser(webUesrId, password);//1
-                    AllObjects.put((Integer.toString(counter)),WebUser);
-                    IdListUsers.put(webUser.getLogin_id(),new ArrayList<String>());
-                    IdListUsers.get(webUser.getLogin_id()).add(Integer.toString(counter));
-                    counter++;
                     Customer customer = new Customer(customerId, address, customerPhone, customerEmail,webUser);//2
-                    AllObjects.put((Integer.toString(counter)),customer);
-                    IdListUsers.get(webUser.getLogin_id()).add(Integer.toString(counter));
-                    counter++;
                     if(isPremium == "y") {
                         PremiumAccount premiumAccount = new PremiumAccount(accountId,customer);//3
-                        AllObjects.put((Integer.toString(counter)),premiumAccount);
-                        IdListUsers.get(webUser.getLogin_id()).add(Integer.toString(counter));
-                        counter++;
                         ShoppingCart shoppingCart = new ShoppingCart(premiumAccount,webUser,new Date()); //4
-                        AllObjects.put((Integer.toString(counter)),shoppingCart);
-                        IdListUsers.get(webUser.getLogin_id()).add(Integer.toString(counter));
-                        counter++;
                         webUser.setShoppingCart(shoppingCart);
                         webUser.setCustomer(customer);
                         premiumAccount.setShoppingCart(shoppingCart);

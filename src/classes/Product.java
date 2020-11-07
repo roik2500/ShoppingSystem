@@ -82,8 +82,7 @@ public class Product {
     }
 
     public void printInfo(){
-        System.out.println("Object connecting: ");
-        System.out.println("Supplier");
+        System.out.println("Object connecting: " + "Supplier");
         if(this.premiumAccount != null)
             System.out.println(", PremiumAccount");
         if(!this.listLineItems.isEmpty())
