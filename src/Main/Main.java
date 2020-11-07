@@ -60,7 +60,7 @@ public class Main {
 
             Scanner scanner=new Scanner(System.in);
             int num=scanner.nextInt();
-            String num2=scanner.next();
+            String loginIDToRemove=scanner.next();
             String login;
             String password;
             Order last_order=null;
@@ -114,17 +114,16 @@ public class Main {
 
                 case 2://Remove WebUser
                     System.out.println("Please enter a login id for remove");
-                    num2 = scanner.next();
-                    WebUser forRemove = users.get(num2);
-                    ArrayList<String> templist = IdList.get(num2);
+                    loginIDToRemove = scanner.next();
+                    WebUser forRemove = getWebUser(loginIDToRemove,AllObjects,IdListUsers);
+                    ArrayList<String> templist = IdListUsers.get(loginIDToRemove);
                     for (String s : templist) {
                         if (AllObjects.containsKey(s))
                             AllObjects.remove(s);
                     }
-                    IdList.remove(num2);
-                    AllObjects.remove(num2);
+                    IdListUsers.remove(loginIDToRemove);
                     forRemove.Delete();
-                    users.remove(num2);
+                    users.remove(loginIDToRemove);
 
                 case 3://Log In
                     boolean out = true;
@@ -145,8 +144,8 @@ public class Main {
                                 switch (userchoos) {
                                     case 1://Make order
                                         System.out.println("Please enter id of the seller");
-                                        num2 = scanner.next();
-                                        WebUser seller = users.get(num2);
+                                        loginIDToRemove = scanner.next();
+                                        WebUser seller = users.get(loginIDToRemove);
                                         if (seller.getCustomer().getAccount().isPremiumAccount()) {
                                             boolean buy = true;
                                             while (buy == true) {
@@ -225,17 +224,17 @@ public class Main {
 
                 case 5://Delete Product
                     System.out.println("Please enter a product id tp delete");
-                    num2 = scanner.next();
-                    Product product = AllProducts.get(num2);
-                    ArrayList<String> tempproduct = IdList.get(num2);
+                    loginIDToRemove = scanner.next();
+                    Product product = AllProducts.get(loginIDToRemove);
+                    ArrayList<String> tempproduct = IdList.get(loginIDToRemove);
                     for (String a : tempproduct) {
                         if (AllObjects.containsKey(a))
                             AllObjects.remove(a);
                     }
-                    IdList.remove(num2);
-                    AllObjects.remove(num2);
+                    IdList.remove(loginIDToRemove);
+                    AllObjects.remove(loginIDToRemove);
                     product.Delete();
-                    AllProducts.remove(num2);
+                    AllProducts.remove(loginIDToRemove);
                     break;
 
 
@@ -299,10 +298,10 @@ public class Main {
     }
     public static WebUser getWebUser(String webUserLoginId,HashMap<String,Object> AllObjects,HashMap<String, ArrayList<String>> IdListUsers){
 
-        return (WebUser)AllObjects.get(IdListUsers.get(webUserLoginId));
+        return (WebUser)AllObjects.get(IdListUsers.get(webUserLoginId).get(0));
     }
     public static Product getProduct(String ProductId,HashMap<String,Object> AllObjects,HashMap<String, ArrayList<String>> IdListProducts){
 
-        return (Product) AllObjects.get(IdListProducts.get(ProductId));
+        return (Product) AllObjects.get(IdListProducts.get(ProductId).get(0));
     }
 }
