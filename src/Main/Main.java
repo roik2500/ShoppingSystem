@@ -13,20 +13,40 @@ public class Main {
 
     public static void main(String[] args) {
         //when the user log in we add him to hashmap "connected" by the login_id
-        HashMap<String, WebUser> users= new HashMap<String, WebUser>();//all the users in the system
-        HashMap<String,Product> AllProducts= new HashMap<String, Product>();
+       // HashMap<String, String> users= new HashMap<String, String>();//all the users in the system
+        //HashMap<String,String> AllProducts= new HashMap<String, String>();
         HashMap<String,Object> AllObjects= new HashMap<String, Object>();
-        HashMap<String, ArrayList<String>> IdList= new HashMap<String, ArrayList<String>>();
+        HashMap<String, ArrayList<String>> IdListUsers= new HashMap<String, ArrayList<String>>();
+        HashMap<String, ArrayList<String>> IdListProducts= new HashMap<String, ArrayList<String>>();
         Account connected;
 
-        //////////Already exist in the System (נתון לנו)/////////////
+        //////////Already exist in the System (נתון לנו)////////////
         Supplier moshe=new Supplier("123","Moshe");
+        AllObjects.put("1",moshe);
         Product bamba=new Product("Bamba", "Bamba",4,moshe);
+        AllObjects.put("2",bamba);
+        IdListProducts.put(bamba.getId(),new ArrayList<String>());
+        IdListProducts.get(bamba.getId()).add("2");
         Product raman=new Product("Raman", "Raman", 50, moshe);
-        WebUser webUser=new WebUser("Dani", "Dani123");
-        Account account=new Account();
-       //need to finish that!!!???!!
+        AllObjects.put("3",raman);
+        IdListProducts.put(raman.getId(),new ArrayList<String>());
+        IdListProducts.get(raman.getId()).add("3");
 
+        moshe.setHashProducts(bamba.getId(),bamba);
+        moshe.setHashProducts(raman.getId(),raman);
+
+        WebUser webUser=new WebUser("Dani", "Dani123");
+        AllObjects.put("4",webUser);
+        IdListUsers.put(webUser.getLogin_id(),new ArrayList<String>());
+        IdListUsers.get(webUser.getLogin_id()).add("4");
+        Customer customer =new Customer(webUser);
+        Account account=new Account();
+        customer.setAccount(account);
+        account.setCustomer(customer);
+        ShoppingCart shoppingCart =new ShoppingCart(account,webUser,new Date());
+        account.setShoppingCart(shoppingCart);
+       //need to finish that!!!???!!
+        int counter = 6; // counter global
 
 
         while (true){

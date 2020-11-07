@@ -11,6 +11,10 @@ public class Customer {
    private WebUser webUser;
    private Account account;
 
+    public Customer(WebUser webUser) {
+        this.webUser = webUser;
+    }
+
     public Customer(String id, Address address, String phone, String email, WebUser webUser) {
         this.id = id;
         this.address = address;
