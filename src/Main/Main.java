@@ -95,23 +95,38 @@ public class Main {
 
                     //Building the objects:
                     WebUser WebUser = new WebUser(webUesrId, password);//1
+
+                    //add WebUser to to Allobject and crate an arraylist and add the ID to the arraylist in IdListUsers
                     AllObjects.put(Integer.toString(counter),WebUser);
                     IdListUsers.put(WebUser.getLogin_id(),new ArrayList<String>());
                     IdListUsers.get(webUser.getLogin_id()).add(Integer.toString(counter));
                     counter++;
+
+
                     Customer customer = new Customer(customerId, address, customerPhone, customerEmail,webUser);//2
+
+                    //add customer to to Allobject and add the ID to the arraylist in IdListUsers
                     AllObjects.put(Integer.toString(counter),customer);
                     IdListUsers.get(webUser.getLogin_id()).add(Integer.toString(counter));
                     counter++;
+
+
                     if(isPremium == "y") {
                         PremiumAccount premiumAccount = new PremiumAccount(accountId,customer);//3
+
+                        //add premiumAccount to to Allobject and add the ID to the arraylist in IdListUsers
                         AllObjects.put(Integer.toString(counter),premiumAccount);
                         IdListUsers.get(webUser.getLogin_id()).add(Integer.toString(counter));
                         counter++;
+
                         ShoppingCart shoppingCart = new ShoppingCart(premiumAccount,webUser,new Date()); //4
+
+                        //add shoppingCart to to Allobject and add the ID to the arraylist in IdListUsers
                         AllObjects.put(Integer.toString(counter),shoppingCart);
                         IdListUsers.get(webUser.getLogin_id()).add(Integer.toString(counter));
                         counter++;
+
+
                         webUser.setShoppingCart(shoppingCart);
                         webUser.setCustomer(customer);
                         premiumAccount.setShoppingCart(shoppingCart);
@@ -120,13 +135,21 @@ public class Main {
                     else
                     {
                         Account account1 = new Account(accountId,customer);//3
+
+                        //add account1 to to Allobject and add the ID to the arraylist in IdListUsers
                         AllObjects.put(Integer.toString(counter),account1);
                         IdListUsers.get(webUser.getLogin_id()).add(Integer.toString(counter));
                         counter++;
+
+
                         ShoppingCart shoppingCart = new ShoppingCart(account1,webUser,new Date()); //4
+
+                        //add shoppingCart to to Allobject and add the ID to the arraylist in IdListUsers
                         AllObjects.put(Integer.toString(counter),shoppingCart);
                         IdListUsers.get(webUser.getLogin_id()).add(Integer.toString(counter));
                         counter++;
+
+
                         webUser.setShoppingCart(shoppingCart);
                         webUser.setCustomer(customer);
                         account1.setShoppingCart(shoppingCart);
