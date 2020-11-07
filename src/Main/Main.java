@@ -40,13 +40,19 @@ public class Main {
         IdListUsers.put(webUser.getLogin_id(),new ArrayList<String>());
         IdListUsers.get(webUser.getLogin_id()).add("4");
         Customer customer1 =new Customer(webUser);
+        AllObjects.put("5",customer1);
+        IdListUsers.get(webUser.getLogin_id()).add("5");
         Account account=new Account();
+        AllObjects.put("6",account);
+        IdListUsers.get(webUser.getLogin_id()).add("6");
         customer1.setAccount(account);
         account.setCustomer(customer1);
         ShoppingCart shoppingCart1 =new ShoppingCart(account,webUser,new Date());
         account.setShoppingCart(shoppingCart1);
+        AllObjects.put("7",shoppingCart1);
+        IdListUsers.get(webUser.getLogin_id()).add("7");
        //need to finish that!!!???!!
-        int counter = 6; // counter global
+        int counter = 8; // counter global
 
 
         while (true){
@@ -100,12 +106,12 @@ public class Main {
                     }
                     else
                     {
-                        Account premiumAccount = new Account(accountId,customer);//3
-                        ShoppingCart shoppingCart = new ShoppingCart(premiumAccount,webUser,new Date()); //4
+                        Account account1 = new Account(accountId,customer);//3
+                        ShoppingCart shoppingCart = new ShoppingCart(account1,webUser,new Date()); //4
                         webUser.setShoppingCart(shoppingCart);
                         webUser.setCustomer(customer);
-                        premiumAccount.setShoppingCart(shoppingCart);
-                        customer.setAccount(premiumAccount);
+                        account1.setShoppingCart(shoppingCart);
+                        customer.setAccount(account1);
                         //*** ADD THE OBJECTS!!***//
 
                     }
@@ -123,7 +129,6 @@ public class Main {
                     }
                     IdListUsers.remove(loginIDToRemove);
                     forRemove.Delete();
-                    users.remove(loginIDToRemove);
 
                 case 3://Log In
                     boolean out = true;
