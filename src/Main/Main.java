@@ -39,20 +39,14 @@ public class Main {
         AllObjects.put("4",webUser);
         IdListUsers.put(webUser.getLogin_id(),new ArrayList<String>());
         IdListUsers.get(webUser.getLogin_id()).add("4");
-        Customer customer1 =new Customer(webUser);
-        AllObjects.put("5",customer1);
-        IdListUsers.get(webUser.getLogin_id()).add("5");
+        Customer customer =new Customer(webUser);
         Account account=new Account();
-        AllObjects.put("6",account);
-        IdListUsers.get(webUser.getLogin_id()).add("6");
-        customer1.setAccount(account);
-        account.setCustomer(customer1);
-        ShoppingCart shoppingCart1 =new ShoppingCart(account,webUser,new Date());
-        account.setShoppingCart(shoppingCart1);
-        AllObjects.put("7",shoppingCart1);
-        IdListUsers.get(webUser.getLogin_id()).add("7");
+        customer.setAccount(account);
+        account.setCustomer(customer);
+        ShoppingCart shoppingCart =new ShoppingCart(account,webUser,new Date());
+        account.setShoppingCart(shoppingCart);
        //need to finish that!!!???!!
-        int counter = 8; // counter global
+        int counter = 6; // counter global
 
 
         while (true){
@@ -66,7 +60,7 @@ public class Main {
 
             Scanner scanner=new Scanner(System.in);
             int num=scanner.nextInt();
-            String loginIDToRemove=scanner.next();
+            String num2=scanner.next();
             String login;
             String password;
             Order last_order=null;
@@ -106,12 +100,12 @@ public class Main {
                     }
                     else
                     {
-                        Account account1 = new Account(accountId,customer);//3
-                        ShoppingCart shoppingCart = new ShoppingCart(account1,webUser,new Date()); //4
+                        Account premiumAccount = new Account(accountId,customer);//3
+                        ShoppingCart shoppingCart = new ShoppingCart(premiumAccount,webUser,new Date()); //4
                         webUser.setShoppingCart(shoppingCart);
                         webUser.setCustomer(customer);
-                        account1.setShoppingCart(shoppingCart);
-                        customer.setAccount(account1);
+                        premiumAccount.setShoppingCart(shoppingCart);
+                        customer.setAccount(premiumAccount);
                         //*** ADD THE OBJECTS!!***//
 
                     }
@@ -120,15 +114,17 @@ public class Main {
 
                 case 2://Remove WebUser
                     System.out.println("Please enter a login id for remove");
-                    loginIDToRemove = scanner.next();
-                    WebUser forRemove = getWebUser(loginIDToRemove,AllObjects,IdListUsers);
-                    ArrayList<String> templist = IdListUsers.get(loginIDToRemove);
+                    num2 = scanner.next();
+                    WebUser forRemove = users.get(num2);
+                    ArrayList<String> templist = IdList.get(num2);
                     for (String s : templist) {
                         if (AllObjects.containsKey(s))
                             AllObjects.remove(s);
                     }
-                    IdListUsers.remove(loginIDToRemove);
+                    IdList.remove(num2);
+                    AllObjects.remove(num2);
                     forRemove.Delete();
+                    users.remove(num2);
 
                 case 3://Log In
                     boolean out = true;
@@ -149,8 +145,8 @@ public class Main {
                                 switch (userchoos) {
                                     case 1://Make order
                                         System.out.println("Please enter id of the seller");
-                                        loginIDToRemove = scanner.next();
-                                        WebUser seller = users.get(loginIDToRemove);
+                                        num2 = scanner.next();
+                                        WebUser seller = users.get(num2);
                                         if (seller.getCustomer().getAccount().isPremiumAccount()) {
                                             boolean buy = true;
                                             while (buy == true) {
@@ -229,17 +225,17 @@ public class Main {
 
                 case 5://Delete Product
                     System.out.println("Please enter a product id tp delete");
-                    loginIDToRemove = scanner.next();
-                    Product product = AllProducts.get(loginIDToRemove);
-                    ArrayList<String> tempproduct = IdList.get(loginIDToRemove);
+                    num2 = scanner.next();
+                    Product product = AllProducts.get(num2);
+                    ArrayList<String> tempproduct = IdList.get(num2);
                     for (String a : tempproduct) {
                         if (AllObjects.containsKey(a))
                             AllObjects.remove(a);
                     }
-                    IdList.remove(loginIDToRemove);
-                    AllObjects.remove(loginIDToRemove);
+                    IdList.remove(num2);
+                    AllObjects.remove(num2);
                     product.Delete();
-                    AllProducts.remove(loginIDToRemove);
+                    AllProducts.remove(num2);
                     break;
 
 
@@ -248,14 +244,7 @@ public class Main {
                         Object Ob = AllObjects.get(idO);
                         System.out.println("Object's id:" + idO + ", object's name: " + Ob.toString());
                     }
-                    for (String Id : users.keySet()) {
-                        WebUser user = users.get(Id);
-                        System.out.println("Object's id:" + Id + ", object's name: " + user.toString());
-                    }
-                    for (String idP : AllProducts.keySet()) {
-                        Product proud = AllProducts.get(idP);
-                        System.out.println("Object's id:" + idP + ", object's name: " + proud.toString());
-                    }
+                    break;
 
 
                 case 7://ShowObjectById
@@ -300,13 +289,5 @@ public class Main {
 
 
 
-    }
-    public static WebUser getWebUser(String webUserLoginId,HashMap<String,Object> AllObjects,HashMap<String, ArrayList<String>> IdListUsers){
-
-        return (WebUser)AllObjects.get(IdListUsers.get(webUserLoginId).get(0));
-    }
-    public static Product getProduct(String ProductId,HashMap<String,Object> AllObjects,HashMap<String, ArrayList<String>> IdListProducts){
-
-        return (Product) AllObjects.get(IdListProducts.get(ProductId).get(0));
     }
 }
