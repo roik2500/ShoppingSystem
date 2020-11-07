@@ -65,7 +65,7 @@ public class Main {
 
             Scanner scanner=new Scanner(System.in);
             int num=scanner.nextInt();
-            String loginIDToRemove=scanner.next();
+            //String loginIDToRemove=scanner.next();
             String login;
             String password;
             Order last_order=null;
@@ -160,7 +160,7 @@ public class Main {
 
                 case 2://Remove WebUser
                     System.out.println("Please enter a login id for remove");
-                    loginIDToRemove = scanner.next();
+                     String loginIDToRemove = scanner.next();
                     WebUser forRemove = getWebUser(loginIDToRemove,AllObjects,IdListUsers);
                     ArrayList<String> templist = IdListUsers.get(loginIDToRemove);
                     for (String s : templist) {
@@ -289,6 +289,7 @@ public class Main {
                         Object Ob = AllObjects.get(idO);
                         System.out.println("Object's id:" + idO + ", object's name: " + Ob.toString());
                     }
+                    break;
              /*       for (String Id : IdListUsers.keySet()) {
                        WebUser webUser1=(WebUser)AllObjects.get(IdListProducts.get(Id));
                         System.out.println("Object's id:" + Id + ", object's name: " + webUser.toString());
