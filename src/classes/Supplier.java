@@ -14,6 +14,7 @@ public class Supplier {
         this.hashProducts = new HashMap<String, Product>();
     }
 
+    //setters and getters
     public String getId() {
         return id;
     }
@@ -30,6 +31,7 @@ public class Supplier {
         this.hashProducts.put(id, product);
     }
 
+    //delete functions
     public void DeleteFromHashProduct(String id)
     {
         hashProducts.remove(id);
@@ -40,4 +42,22 @@ public class Supplier {
            p.setPremiumAccount(null);
        hashProducts.clear();
     }
+
+    //prints
+    @Override
+    public String toString() {
+        return "Supplier";
+    }
+
+    public void print(){
+        System.out.println("Object's name: " + this.name + "and object's id:" + this.id);
+    }
+
+    public void printInfo(){
+        if(!this.hashProducts.isEmpty())
+            System.out.println("Object connecting: Product");
+        else
+            System.out.println("Object connecting: no body");
+    }
+
 }
