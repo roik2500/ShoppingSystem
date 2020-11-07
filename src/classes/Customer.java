@@ -1,6 +1,6 @@
 package classes;
 
-import com.sun.xml.internal.ws.wsdl.writer.document.http.Address;
+import classes.Address;
 
 public class Customer {
 
@@ -11,13 +11,14 @@ public class Customer {
    private WebUser webUser;
    private Account account;
 
-    public Customer(String id) {
+    public Customer(String id, Address address, String phone, String email, WebUser webUser) {
         this.id = id;
-        this.address = null;
-        this.phone = null;
-        this.email = null;
-      this.account=null;
-      this.webUser=null;
+        this.address = address;
+        this.phone = phone;
+        this.email = email;
+        this.account=null;
+        this.webUser=webUser;
+
     }
 
     public void Delete(){

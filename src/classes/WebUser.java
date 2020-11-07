@@ -11,11 +11,11 @@ public class WebUser {
     private Customer customer;
     private ShoppingCart shoppingCart;
 
-    public WebUser(String login_id) {
+    public WebUser(String login_id, String password) {
         this.login_id = login_id;
-        this.password = null; //we will update this member after it
+        this.password = password; //we will update this member after it
         this.state = UseState.New;
-        this.customer = new Customer(login_id);
+        this.customer = null;
         this.shoppingCart=null;
     }
 

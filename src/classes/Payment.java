@@ -40,4 +40,17 @@ public abstract class Payment {
         if(details != null)
             this.details = details;
     }
+
+    public void printinfo()
+    {
+        System.out.println("Payment's id: " + id + ", it's date: " + paid);
+        System.out.println(", total pay: " + total);
+        System.out.println(", pay's details:" + details);
+
+      /*  account.printinfo();
+        protected Account account;
+        System.out.println();
+        protected Order order
+        System.out.println(); */
+    }
 }

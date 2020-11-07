@@ -3,6 +3,7 @@ import classes.*;
 import enums.UseState;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -22,8 +23,7 @@ public class Main {
         Supplier moshe=new Supplier("123","Moshe");
         Product bamba=new Product("Bamba", "Bamba",4,moshe);
         Product raman=new Product("Raman", "Raman", 50, moshe);
-        WebUser webUser=new WebUser("Dani");
-        webUser.setPassword("Dani123");
+        WebUser webUser=new WebUser("Dani", "Dani123");
         Account account=new Account();
        //need to finish that!!!???!!
 
@@ -47,6 +47,49 @@ public class Main {
 
             switch (num) {
                 case 1://Add WebUser
+                    //webUser
+                    System.out.println("Details about web user:");
+                    String webUesrId = System.console().readLine("Enter web user id:");
+                    password = System.console().readLine("password:");
+
+                    //customer
+                    System.out.println("Details about customer:");
+                    String customerId = System.console().readLine("Enter customer id:");
+                    String customerAddress = System.console().readLine("Enter customer address:");
+                    Address address = new Address(customerAddress);
+                    String customerPhone = System.console().readLine("Enter customer phone:");
+                    String customerEmail = System.console().readLine("Enter customer email:");
+
+                    //Account
+                    System.out.println("Details about account:");
+                    String accountId = System.console().readLine("Enter account id:");
+                    String accountBillingAddress = System.console().readLine("Enter billing address account:");
+                    String accountBalance = System.console().readLine("Enter account balance:");
+                    String isPremium = System.console().readLine("Is a premium account? y/n");
+
+                    //Building the objects:
+                    WebUser WebUser = new WebUser(webUesrId, password);//1
+                    Customer customer = new Customer(customerId, address, customerPhone, customerEmail,webUser);//2
+                    if(isPremium == "y") {
+                        PremiumAccount premiumAccount = new PremiumAccount(accountId,customer);//3
+                        ShoppingCart shoppingCart = new ShoppingCart(premiumAccount,webUser,new Date()); //4
+                        webUser.setShoppingCart(shoppingCart);
+                        webUser.setCustomer(customer);
+                        premiumAccount.setShoppingCart(shoppingCart);
+                        customer.setAccount(premiumAccount);
+                    }
+                    else
+                    {
+                        Account premiumAccount = new Account(accountId,customer);//3
+                        ShoppingCart shoppingCart = new ShoppingCart(premiumAccount,webUser,new Date()); //4
+                        webUser.setShoppingCart(shoppingCart);
+                        webUser.setCustomer(customer);
+                        premiumAccount.setShoppingCart(shoppingCart);
+                        customer.setAccount(premiumAccount);
+                        //*** ADD THE OBJECTS!!***//
+
+                    }
+
 
 
                 case 2://Remove WebUser

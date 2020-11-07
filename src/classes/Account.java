@@ -19,7 +19,18 @@ public class Account {
 
 //protected  boolean isPremiumAccount;
 
-    public Account(String id, String billing_address,  Date open, int balanced) {
+    public Account(String id, Customer customer) {
+        this.id = id;
+        this.customer = customer;
+        hash_Order = new HashMap<String,Order>();
+        hash_Payment = new HashMap<String,Payment>();
+        hasCustomer=false;
+        hasShoppingCart=false;
+        this.closed = null;
+        this.is_closed = true;
+    }
+
+    public Account(String id, String billing_address, Date open, int balanced) {
         this.id = id;
         this.billing_address = billing_address;
         this.is_closed = true;
@@ -30,7 +41,6 @@ public class Account {
         hash_Payment = new HashMap<String,Payment>();
         hasCustomer=false;
         hasShoppingCart=false;
-        //isPremiumAccount=false;
     }
 
 
