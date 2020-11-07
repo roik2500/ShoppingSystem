@@ -209,19 +209,19 @@ public class Main {
                         temp.printinfo();
                     } else if (ob instanceof LineItem) {
                         LineItem temp = (LineItem) ob;
-                        temp.printinfo();
+                        temp.print();
                     } else if (ob instanceof Order) {
                         Order temp = (Order) ob;
                         temp.printinfo();
                     } else if (ob instanceof Product) {
                         Product temp = (Product) ob;
-                        temp.printinfo();
+                        temp.printInfo();
                     } else if (ob instanceof ShoppingCart) {
                         ShoppingCart temp = (ShoppingCart) ob;
                         temp.printinfo();
                     } else if (ob instanceof Supplier) {
                         Supplier temp = (Supplier) ob;
-                        temp.printinfo();
+                        temp.printInfo();
                     } else if (ob instanceof WebUser) {
                         WebUser temp = (WebUser) ob;
                         temp.printinfo();
