@@ -297,4 +297,12 @@ public class Main {
 
 
     }
+    public static WebUser getWebUser(String webUserLoginId,HashMap<String,Object> AllObjects,HashMap<String, ArrayList<String>> IdListUsers){
+
+        return (WebUser)AllObjects.get(IdListUsers.get(webUserLoginId));
+    }
+    public static Product getProduct(String ProductId,HashMap<String,Object> AllObjects,HashMap<String, ArrayList<String>> IdListProducts){
+
+        return (Product) AllObjects.get(IdListProducts.get(ProductId));
+    }
 }
