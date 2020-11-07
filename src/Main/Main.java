@@ -176,13 +176,14 @@ public class Main {
                     boolean out = true;
                     System.out.println("Please enter a login id");
                     login = scanner.next();
-                    if (users.containsKey(login)) {
+                    if (IdListUsers.containsKey(login)) {
                         System.out.println("Please enter a Password");
                         password = scanner.next();
-                        if (users.get(login).getPassword() == password) {
-                            account = users.get(login).getCustomer().getAccount();//This is
+                        webUser = getWebUser(login,AllObjects,IdListUsers);
+                        if (webUser.getPassword() == password) {
+                            account = webUser.getCustomer().getAccount();//This is
                             while (out == true) {
-                                users.get(login).setState(Active);
+                                webUser.setState(Active);
                                 System.out.println("1: Make order");
                                 System.out.println("2: Display order");
                                 System.out.println("3: Add a Link Product");
