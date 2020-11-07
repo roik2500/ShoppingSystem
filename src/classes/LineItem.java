@@ -27,13 +27,18 @@ public class LineItem {
     }
 
     public void print(){
-        /*
-        System.out.println("quantity:" + quantity );
-        System.out.println("price:" + price );
-        order.print();
-        shoppingCart.printinfo();
-        product.print();
-         */
+        System.out.println("quantity:" + quantity + "price:" + price);
+    }
+
+    public void printinfo(){
+        System.out.println("Object connecting: ");
+        if(this.order != null)
+            System.out.println(", order");
+        if(this.shoppingCart!=null)
+            System.out.println(", shoppingCart");
+        if(this.product!=null)
+            System.out.println(", product");
+
     }
 
     public int getQuantity() {

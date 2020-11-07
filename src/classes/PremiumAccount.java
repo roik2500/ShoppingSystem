@@ -42,15 +42,16 @@ public class PremiumAccount extends Account {
     }
 
 
-    public void printPremium(){
-        /*
-        this.printinfo();
-        for (Product p:hash_Product.values()){
-            p.print();
+    public void printPremium(){ this.print();
         }
 
-         */
+    public void printPremiumInfo(){
+        this.printinfo();
+        System.out.println("Object connecting: ");
+        if(!this.hash_Product.isEmpty())
+            System.out.println(", LineItems");
 
     }
+
 
 }
