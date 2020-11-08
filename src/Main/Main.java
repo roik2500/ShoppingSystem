@@ -218,12 +218,9 @@ public class Main {
 
                                                 //add order and line item to our data structure
                                                 AllObjects.put(Integer.toString(counter), newOrder);
-                                                counter++;
-                                                AllObjects.put(Integer.toString(counter), lineItem);
-                                                counter++;
-
                                                 IdListUsers.get(connect.getLogin_id()).add(Integer.toString(counter));
                                                 counter++;
+                                                AllObjects.put(Integer.toString(counter), lineItem);
                                                 IdListProducts.get(prod).add(Integer.toString(counter));
                                                 counter++;
                                                 last_order=newOrder;//save last
