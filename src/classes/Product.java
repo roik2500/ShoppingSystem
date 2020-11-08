@@ -11,6 +11,8 @@ public class Product {
     private ArrayList<LineItem> listLineItems;
     private PremiumAccount premiumAccount;
 
+
+
     public Product(String id, String name, int price, Supplier supplier) {
         this.id = id;
         this.name = name;
@@ -31,6 +33,10 @@ public class Product {
 
     public Supplier getSupplier() {
         return supplier;
+    }
+
+    public int getPrice() {
+        return price;
     }
 
     public ArrayList<LineItem> getListLineItems() {

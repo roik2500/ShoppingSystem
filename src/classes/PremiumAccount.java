@@ -7,6 +7,8 @@ public class PremiumAccount extends Account {
 
     private HashMap<String,Product> hash_Product;
 
+
+
     public PremiumAccount(String id, Customer customer) {
         super(id, customer);
         hash_Product = new HashMap<String,Product>();
@@ -51,6 +53,16 @@ public class PremiumAccount extends Account {
         if(!this.hash_Product.isEmpty())
             System.out.println(", LineItems");
 
+    }
+
+    public void printProduct(){
+        for (Product p:hash_Product.values()) {
+            p.print();
+        }
+    }
+
+    public HashMap<String, Product> getHash_Product() {
+        return hash_Product;
     }
 
 

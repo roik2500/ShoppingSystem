@@ -100,7 +100,7 @@ public class Account {
 
     public void printorders(){
         for (Order o:hash_Order.values()) {
-            System.out.println(o);
+            o.print();
         }
     }
     public void print(){

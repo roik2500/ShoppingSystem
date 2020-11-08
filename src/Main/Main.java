@@ -1,7 +1,10 @@
 package Main;
 import classes.*;
+import enums.OrderStatus;
 import enums.UseState;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -11,7 +14,7 @@ import static enums.UseState.Active;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ParseException {
         //when the user log in we add him to hashmap "connected" by the login_id
        // HashMap<String, String> users= new HashMap<String, String>();//all the users in the system
         //HashMap<String,String> AllProducts= new HashMap<String, String>();
@@ -177,11 +180,10 @@ public class Main {
                     if (IdListUsers.containsKey(login)) {
                         System.out.println("Please enter a Password");
                         password = scanner.next();
-                        webUser = getWebUser(login,AllObjects,IdListUsers);
-                        if (webUser.getPassword() == password) {
-                            account = webUser.getCustomer().getAccount();//This is
+                        WebUser connect = getWebUser(login,AllObjects,IdListUsers);
+                        if (connect.getPassword() == password) {
                             while (out == true) {
-                                webUser.setState(Active);
+                                connect.setState(Active);
                                 System.out.println("1: Make order");
                                 System.out.println("2: Display order");
                                 System.out.println("3: Add a Link Product");
@@ -193,19 +195,42 @@ public class Main {
                                         loginIDToRemove = scanner.next();
                                         WebUser seller = getWebUser(loginIDToRemove,AllObjects,IdListUsers);
                                         if (seller.getCustomer().getAccount().isPremiumAccount()) {
+                                            PremiumAccount premiumAccount= (PremiumAccount) seller.getCustomer().getAccount();
                                             boolean buy = true;
                                             while (buy == true) {
-                                                seller.getCustomer().getAccount().printorders();
+                                                premiumAccount.printProduct();//show all products
                                                 System.out.println("Please enter id of the product you want");
-                                                String prod = scanner.next();
+                                                String prod = scanner.next();//choose product
                                                 System.out.println("Please enter quantity");
-                                                String quan = scanner.next();
-                                                /*
-                                                need to remove from seller?
-                                                need to put in buyer?
-                                                 */
+                                                String quan = scanner.next();//ask for quantity
+                                                int quantity=Integer.parseInt(quan);
+                                                System.out.println("Please enter order number");
+                                                String number = scanner.next();
+                                                System.out.println("Please enter date to deliver");
+                                                String date = scanner.next();
+                                                Date today = new Date();
+                                                Date deliver = new SimpleDateFormat("yyyy-MM-dd").parse(date);
+                                                int price=premiumAccount.getHash_Product().get(prod).getPrice();
+                                                //make new order and line item
+                                                Order newOrder=new Order(number,today,deliver, (com.sun.xml.internal.ws.wsdl.writer.document.http.Address) connect.getCustomer().getAddress(), OrderStatus.New,quantity*price);
+                                                LineItem lineItem=new LineItem(quantity,price,newOrder,connect.getShoppingCart(),premiumAccount.getHash_Product().get(prod));
+                                                connect.getCustomer().getAccount().UpdateHashOrders(newOrder);//connect the order to the account order hash
 
-                                                last_order = seller.getCustomer().getAccount().getorder(prod);
+                                                //add order and line item to our data structure
+                                                AllObjects.put(Integer.toString(counter), newOrder);
+                                                counter++;
+                                                AllObjects.put(Integer.toString(counter), lineItem);
+                                                counter++;
+
+                                                IdListUsers.get(connect.getLogin_id()).add(Integer.toString(counter));
+                                                counter++;
+                                                IdListProducts.get(prod).add(Integer.toString(counter));
+                                                counter++;
+                                                last_order=newOrder;//save last
+
+
+
+
                                                 System.out.println("Do you want to continue buying?(yes/no");
                                                 String stay = scanner.next();
                                                 if (stay == "no")
