@@ -14,4 +14,9 @@ public class DelayedPayment extends Payment {
         this.total = total;
         this.details = details;
     }
+
+    @Override
+    public String toString() {
+        return "DelayedPayment";
+    }
 }

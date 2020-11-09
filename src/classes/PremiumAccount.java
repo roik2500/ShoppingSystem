@@ -61,6 +61,11 @@ public class PremiumAccount extends Account {
         }
     }
 
+    @Override
+    public String toString() {
+        return "PremiumAccount";
+    }
+
     public HashMap<String, Product> getHash_Product() {
         return hash_Product;
     }

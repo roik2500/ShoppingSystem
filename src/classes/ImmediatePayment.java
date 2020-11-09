@@ -15,4 +15,9 @@ public class ImmediatePayment extends Payment {
         this.total = total;
         this.details = details;
     }
+
+    @Override
+    public String toString() {
+        return "ImmediatePayment";
+    }
 }

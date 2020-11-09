@@ -31,14 +31,21 @@ public class LineItem {
     }
 
     public void printinfo(){
+        System.out.println("quantity:" + quantity );
+        System.out.println("price:" + price);
         System.out.println("Object connecting: ");
         if(this.order != null)
-            System.out.println(", order");
+            System.out.println(order);
         if(this.shoppingCart!=null)
-            System.out.println(", shoppingCart");
+            System.out.println(shoppingCart);
         if(this.product!=null)
-            System.out.println(", product");
+            System.out.println(product);
 
+    }
+
+    @Override
+    public String toString() {
+        return "LineItem";
     }
 
     public int getQuantity() {

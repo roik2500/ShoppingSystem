@@ -43,9 +43,15 @@ public abstract class Payment {
 
     public void printinfo()
     {
-        System.out.println("Payment's id: " + id + ", it's date: " + paid);
+        System.out.println("Payment's id: " + id  );
+        System.out.println(", it's date: " + paid);
         System.out.println(", total pay: " + total);
         System.out.println(", pay's details:" + details);
+        System.out.println("Object connecting: ");
+        if(this.order != null)
+            System.out.println(order);
+        if(this.account!=null)
+            System.out.println(account);
 
       /*  account.printinfo();
         protected Account account;

@@ -77,4 +77,9 @@ public class ShoppingCart {
     public void setList_LineItem(ArrayList<LineItem> list_LineItem) {
         this.list_LineItem = list_LineItem;
     }
+
+    @Override
+    public String toString() {
+        return "ShoppingCart";
+    }
 }
