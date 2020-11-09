@@ -196,7 +196,6 @@ public class Main {
                         System.out.println("Please enter a Password");
                         password = scanner.next();
                         WebUser connect = getWebUser(login,AllObjects,IdListUsers);
-                        System.out.println(connect.getPassword());
                         if (password.equals(connect.getPassword()) ) {
                             while (out == true) {
                                 connect.setState(Active);
@@ -207,6 +206,7 @@ public class Main {
                                 int userchoos = scanner.nextInt();
                                 switch (userchoos) {
                                     case 1://Make order
+                                        float total=0;
                                         System.out.println("Please enter id of the seller");
                                         loginIDToRemove = scanner.next();
                                         WebUser seller = getWebUser(loginIDToRemove,AllObjects,IdListUsers);
@@ -222,7 +222,7 @@ public class Main {
                                                 int quantity=Integer.parseInt(quan);
                                                 System.out.println("Please enter order number");
                                                 String number = scanner.next();
-                                                System.out.println("Please enter date to deliver");
+                                                System.out.println("Please enter date to deliver(yyyy-MM-dd)");
                                                 String date = scanner.next();
                                                 Date today = new Date();
                                                 Date deliver = new SimpleDateFormat("yyyy-MM-dd").parse(date);
@@ -231,7 +231,9 @@ public class Main {
                                                 Order newOrder=new Order(number,today,deliver, connect.getCustomer().getAddress(), OrderStatus.New,quantity*price);
                                                 LineItem lineItem=new LineItem(quantity,price,newOrder,connect.getShoppingCart(),premiumAccount.getHash_Product().get(prod));
                                                 connect.getCustomer().getAccount().UpdateHashOrders(newOrder);//connect the order to the account order hash
-
+                                                newOrder.UpdateListLineItems(lineItem);
+                                                premiumAccount.setBalanced((int) (premiumAccount.getBalanced()+newOrder.getTotal()));
+                                                total=total+quantity*price;
                                                 //add order and line item to our data structure
                                                 AllObjects.put(Integer.toString(counter), newOrder);
                                                 IdListUsers.get(connect.getLogin_id()).add(Integer.toString(counter));
@@ -246,8 +248,43 @@ public class Main {
 
                                                 System.out.println("Do you want to continue buying?(yes/no)");
                                                 String stay = scanner.next();
-                                                if (stay.equals("no"))
+                                                if (stay.equals("no")) {
+                                                    System.out.println("How do you want to pay?(D/I)");
+                                                    String pay = scanner.next();
+                                                    System.out.println("Please enter payment id");
+                                                    String payid = scanner.next();
+                                                    System.out.println("Please enter date to pay(yyyy-MM-dd)");
+                                                    String paydate = scanner.next();
+                                                    Date todaypay = new Date();
+                                                    Date deliverpay = new SimpleDateFormat("yyyy-MM-dd").parse(paydate);
+                                                    System.out.println("Please enter more details");
+                                                    String details = scanner.next();
+                                                    if(pay.equals("D"))
+                                                    {
+                                                        DelayedPayment delayedPayment=new DelayedPayment(connect.getCustomer().getAccount(),newOrder,deliverpay,payid,deliverpay,total,details);
+                                                        connect.getCustomer().getAccount().UpdateHashPayments(delayedPayment);
+                                                        AllObjects.put(Integer.toString(counter), delayedPayment);
+                                                        IdListUsers.get(connect.getLogin_id()).add(Integer.toString(counter));
+                                                        counter++;
+                                                    }
+                                                    else {
+                                                        System.out.println("Please enter phone phone confirmation(y/n)");
+                                                        String confirm = scanner.next();
+                                                        boolean confirmation;
+                                                        if(confirm.equals("y"))
+                                                            confirmation=true;
+                                                        else
+                                                            confirmation=false;
+                                                        ImmediatePayment immediatePayment=new ImmediatePayment(connect.getCustomer().getAccount(),newOrder,confirmation,payid,deliverpay,total,details);
+                                                        connect.getCustomer().getAccount().UpdateHashPayments(immediatePayment);
+                                                        AllObjects.put(Integer.toString(counter), immediatePayment);
+                                                        IdListUsers.get(connect.getLogin_id()).add(Integer.toString(counter));
+                                                        counter++;
+                                                    }
+                                                    connect.getCustomer().getAccount().setBalanced((int) (connect.getCustomer().getAccount().getBalanced()-total));
+
                                                     buy = false;
+                                                }
                                             }
                                         } else {
                                             System.out.println("This is not a premium account");
@@ -273,6 +310,7 @@ public class Main {
                                                 premiumAccount.UpdateHashProduct(product);
                                             }
                                         }
+                                        break;
 
 
                                     case 4://LogOut
