@@ -39,10 +39,12 @@ public class Main {
         moshe.setHashProducts(raman.getId(),raman);
 
         WebUser webUser=new WebUser("Dani", "Dani123");
-        AllObjects.put("4",webUser);
+        AllObjects.put("4",webUser);;
+
         IdListUsers.put(webUser.getLogin_id(),new ArrayList<String>());
         IdListUsers.get(webUser.getLogin_id()).add("4");
         Customer customer1 =new Customer(webUser);
+        webUser.setCustomer(customer1);
         AllObjects.put("5",customer1);
         IdListUsers.get(webUser.getLogin_id()).add("5");
         Account account=new Account();
@@ -54,6 +56,7 @@ public class Main {
         account.setShoppingCart(shoppingCart1);
         AllObjects.put("7",shoppingCart1);
         IdListUsers.get(webUser.getLogin_id()).add("7");
+        webUser.getCustomer().setAddress(new Address("13213"));
        //need to finish that!!!???!!
         int counter = 8; // counter global
 
@@ -77,23 +80,33 @@ public class Main {
                 case 1://Add WebUser
                     //webUser
                     System.out.println("Details about web user:");
-                    String webUesrId = System.console().readLine("Enter web user id:");
-                    password = System.console().readLine("password:");
+                    System.out.println("Enter web user id:");
+                    String webUesrId = scanner.next();
+                    System.out.println("password:");
+                    password = scanner.next();
 
                     //customer
                     System.out.println("Details about customer:");
-                    String customerId = System.console().readLine("Enter customer id:");
-                    String customerAddress = System.console().readLine("Enter customer address:");
+                    System.out.println("Enter customer id:");
+                    String customerId = scanner.next();
+                    System.out.println("Enter customer address:");
+                    String customerAddress = scanner.next();
                     Address address = new Address(customerAddress);
-                    String customerPhone = System.console().readLine("Enter customer phone:");
-                    String customerEmail = System.console().readLine("Enter customer email:");
+                    System.out.println("Enter customer phone:");
+                    String customerPhone = scanner.next();
+                    System.out.println("Enter customer email:");
+                    String customerEmail =scanner.next();
 
                     //Account
                     System.out.println("Details about account:");
-                    String accountId = System.console().readLine("Enter account id:");
-                    String accountBillingAddress = System.console().readLine("Enter billing address account:");
-                    String accountBalance = System.console().readLine("Enter account balance:");
-                    String isPremium = System.console().readLine("Is a premium account? y/n");
+                    System.out.println("Enter account id:");
+                    String accountId = scanner.next();
+                    System.out.println("Enter billing address account:");
+                    String accountBillingAddress = scanner.next();
+                    System.out.println("Enter account balance:");
+                    String accountBalance =  scanner.next();
+                    System.out.println("Is a premium account? y/n");
+                    String isPremium = scanner.next();
 
                     //Building the objects:
                     WebUser WebUser = new WebUser(webUesrId, password);//1
@@ -101,7 +114,7 @@ public class Main {
                     //add WebUser to to Allobject and crate an arraylist and add the ID to the arraylist in IdListUsers
                     AllObjects.put(Integer.toString(counter),WebUser);
                     IdListUsers.put(WebUser.getLogin_id(),new ArrayList<String>());
-                    IdListUsers.get(webUser.getLogin_id()).add(Integer.toString(counter));
+                    IdListUsers.get(WebUser.getLogin_id()).add(Integer.toString(counter));
                     counter++;
 
 
@@ -109,28 +122,28 @@ public class Main {
 
                     //add customer to to Allobject and add the ID to the arraylist in IdListUsers
                     AllObjects.put(Integer.toString(counter),customer);
-                    IdListUsers.get(webUser.getLogin_id()).add(Integer.toString(counter));
+                    IdListUsers.get(WebUser.getLogin_id()).add(Integer.toString(counter));
                     counter++;
 
 
-                    if(isPremium == "y") {
+                    if(isPremium.equals("y")) {
                         PremiumAccount premiumAccount = new PremiumAccount(accountId,customer);//3
 
                         //add premiumAccount to to Allobject and add the ID to the arraylist in IdListUsers
                         AllObjects.put(Integer.toString(counter),premiumAccount);
-                        IdListUsers.get(webUser.getLogin_id()).add(Integer.toString(counter));
+                        IdListUsers.get(WebUser.getLogin_id()).add(Integer.toString(counter));
                         counter++;
 
                         ShoppingCart shoppingCart = new ShoppingCart(premiumAccount,webUser,new Date()); //4
 
                         //add shoppingCart to to Allobject and add the ID to the arraylist in IdListUsers
                         AllObjects.put(Integer.toString(counter),shoppingCart);
-                        IdListUsers.get(webUser.getLogin_id()).add(Integer.toString(counter));
+                        IdListUsers.get(WebUser.getLogin_id()).add(Integer.toString(counter));
                         counter++;
 
 
-                        webUser.setShoppingCart(shoppingCart);
-                        webUser.setCustomer(customer);
+                        WebUser.setShoppingCart(shoppingCart);
+                        WebUser.setCustomer(customer);
                         premiumAccount.setShoppingCart(shoppingCart);
                         customer.setAccount(premiumAccount);
                     }
@@ -140,7 +153,7 @@ public class Main {
 
                         //add account1 to to Allobject and add the ID to the arraylist in IdListUsers
                         AllObjects.put(Integer.toString(counter),account1);
-                        IdListUsers.get(webUser.getLogin_id()).add(Integer.toString(counter));
+                        IdListUsers.get(WebUser.getLogin_id()).add(Integer.toString(counter));
                         counter++;
 
 
@@ -148,16 +161,17 @@ public class Main {
 
                         //add shoppingCart to to Allobject and add the ID to the arraylist in IdListUsers
                         AllObjects.put(Integer.toString(counter),shoppingCart);
-                        IdListUsers.get(webUser.getLogin_id()).add(Integer.toString(counter));
+                        IdListUsers.get(WebUser.getLogin_id()).add(Integer.toString(counter));
                         counter++;
 
-                        webUser.setShoppingCart(shoppingCart);
-                        webUser.setCustomer(customer);
+                        WebUser.setShoppingCart(shoppingCart);
+                        WebUser.setCustomer(customer);
                         account1.setShoppingCart(shoppingCart);
                         customer.setAccount(account1);
                         //*** ADD THE OBJECTS!!***//
 
                     }
+                    break;
 
 
 
@@ -172,6 +186,7 @@ public class Main {
                     }
                     IdListUsers.remove(loginIDToRemove);
                     forRemove.Delete();
+                    break;
 
                 case 3://Log In
                     boolean out = true;
@@ -181,7 +196,8 @@ public class Main {
                         System.out.println("Please enter a Password");
                         password = scanner.next();
                         WebUser connect = getWebUser(login,AllObjects,IdListUsers);
-                        if (connect.getPassword() == password) {
+                        System.out.println(connect.getPassword());
+                        if (password.equals(connect.getPassword()) ) {
                             while (out == true) {
                                 connect.setState(Active);
                                 System.out.println("1: Make order");
@@ -212,7 +228,7 @@ public class Main {
                                                 Date deliver = new SimpleDateFormat("yyyy-MM-dd").parse(date);
                                                 int price=premiumAccount.getHash_Product().get(prod).getPrice();
                                                 //make new order and line item
-                                                Order newOrder=new Order(number,today,deliver, (com.sun.xml.internal.ws.wsdl.writer.document.http.Address) connect.getCustomer().getAddress(), OrderStatus.New,quantity*price);
+                                                Order newOrder=new Order(number,today,deliver, connect.getCustomer().getAddress(), OrderStatus.New,quantity*price);
                                                 LineItem lineItem=new LineItem(quantity,price,newOrder,connect.getShoppingCart(),premiumAccount.getHash_Product().get(prod));
                                                 connect.getCustomer().getAccount().UpdateHashOrders(newOrder);//connect the order to the account order hash
 
@@ -228,9 +244,9 @@ public class Main {
 
 
 
-                                                System.out.println("Do you want to continue buying?(yes/no");
+                                                System.out.println("Do you want to continue buying?(yes/no)");
                                                 String stay = scanner.next();
-                                                if (stay == "no")
+                                                if (stay.equals("no"))
                                                     buy = false;
                                             }
                                         } else {
@@ -247,16 +263,27 @@ public class Main {
 
                                     case 3://Link Product
 
+                                        if (connect.getCustomer().getAccount().isPremiumAccount()) { //checking if preimumAccount
+                                            PremiumAccount premiumAccount = (PremiumAccount) connect.getCustomer().getAccount();
+                                            System.out.println("Enter a product name");
+                                            String product_name = scanner.next();
+                                            Product product = getProduct(product_name,AllObjects,IdListProducts);
+                                            if (product.getPremiumAccount() == null) {
+                                                product.setPremiumAccount(premiumAccount);
+                                                premiumAccount.UpdateHashProduct(product);
+                                            }
+                                        }
+
+
                                     case 4://LogOut
-                                        System.out.println("Please enter a login id");
-                                        String id_log_out = scanner.next();
-                                         getWebUser(id_log_out,AllObjects,IdListUsers).setState(UseState.Blocked);
+                                        connect.setState(UseState.Blocked);
                                         out = false;
                                         break;
                                 }
                             }
 
                         }
+                        break;
 
                     }
 
@@ -328,7 +355,7 @@ public class Main {
                     Object ob = AllObjects.get(object_id);
                     if (ob instanceof PremiumAccount) {
                         PremiumAccount temp = (PremiumAccount) ob;
-                        temp.printinfo();
+                        temp.printPremiumInfo();
                     } else if (ob instanceof Account) {
                         Account temp = (Account) ob;
                         temp.printinfo();
@@ -357,6 +384,7 @@ public class Main {
                         WebUser temp = (WebUser) ob;
                         temp.printinfo();
                     }
+                    break;
 
             }
 

@@ -44,8 +44,8 @@ public class Customer {
             this.webUser = webUser;
     }
     public void setAccount(Account account) {
-        if(account==null)
-        this.account = account;
+        if(this.account==null)
+            this.account = account;
     }
 
     public void printinfo(){

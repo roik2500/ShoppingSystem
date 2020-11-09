@@ -23,6 +23,7 @@ public class WebUser {
         System.out.println("ID:"+login_id);
         System.out.println("Password:"+password);
         System.out.println("State:"+state);
+        System.out.println("connected:" );
         if(shoppingCart!=null){ System.out.println(shoppingCart); }
         if(customer!=null){ System.out.println(customer);}
     }

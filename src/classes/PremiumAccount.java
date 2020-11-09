@@ -20,9 +20,9 @@ public class PremiumAccount extends Account {
         hash_Product = new HashMap<String,Product>();
     } */
 
-    public void UpdateHashProduct(String id,Product product)
+    public void UpdateHashProduct(Product product)
     {
-        hash_Product.put(id,product);
+        hash_Product.put(product.getId(),product);
     }
 
     public void DeleteFromHashProduct(String id)
@@ -51,7 +51,9 @@ public class PremiumAccount extends Account {
         this.printinfo();
         System.out.println("Object connecting: ");
         if(!this.hash_Product.isEmpty())
-            System.out.println(", LineItems");
+            for(Product p: hash_Product.values()){
+                System.out.println(p);
+            }
 
     }
 

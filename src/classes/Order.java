@@ -1,8 +1,7 @@
 package classes;
 
-import com.sun.xml.internal.ws.wsdl.writer.document.http.Address;
 import enums.OrderStatus;
-
+import classes.Address;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -11,7 +10,7 @@ public class Order {
     private String number;
     private Date ordered;
     private Date shipped;
-    private Address ship_to;
+    private classes.Address ship_to;
     private OrderStatus status;
     private float total;
     private Account account;
@@ -74,9 +73,10 @@ public class Order {
         System.out.println("number:" + number );
         System.out.println("ordered:" + ordered );
         System.out.println("shipped:" + shipped );
-        System.out.println("ship_to:" + ship_to );
+        System.out.println("ship_to:" + ship_to.toString() );
         System.out.println("status:" + status );
         System.out.println("total:" + total );
+        System.out.println("connected:" );
         if(account!=null) System.out.println(account);
 
         for (LineItem l:list_LineItem) {

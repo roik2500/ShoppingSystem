@@ -49,6 +49,8 @@ public class Account {
         hash_Order = new HashMap<String,Order>();
         hash_Payment = new HashMap<String,Payment>();
         hasCustomer=false;
+        this.closed = null;
+        this.is_closed = true;
     }
 
     public void UpdateHashOrders(Order order)
