@@ -88,10 +88,15 @@ public class Product {
     }
 
     public void printInfo(){
-        System.out.println("Object connecting: " + "Supplier");
+        System.out.println("Object's id: " + this.id );
+        System.out.println("Object's name: " + this.name);
+        System.out.println("Object's price: " + this.price);
+        System.out.println("Object connecting: ");
+        if(this.supplier !=null)
+            System.out.println(supplier);
         if(this.premiumAccount != null)
-            System.out.println(", PremiumAccount");
+            System.out.println(premiumAccount);
         if(!this.listLineItems.isEmpty())
-            System.out.println(", LineItems");
+            System.out.println(listLineItems);
     }
 }
