@@ -2,7 +2,6 @@ package Main;
 import classes.*;
 import enums.OrderStatus;
 import enums.UseState;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -10,7 +9,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
-
 import static enums.UseState.Active;
 
 public class Main {
@@ -56,8 +54,9 @@ public class Main {
         IdListUsers.get(webUser.getLogin_id()).add("7");
         webUser.getCustomer().setAddress(new Address("13213"));
         int counter = 8; // counter global
+        boolean exit=false;
 
-        while (true){
+        while (exit!=true){
             System.out.println("1: Add WebUser");
             System.out.println("2: Remove WebUser ");
             System.out.println("3: Log In");
@@ -65,6 +64,8 @@ public class Main {
             System.out.println("5: Delete Product");
             System.out.println("6: ShowAllObjects");
             System.out.println("7: ShowObjectId ");
+            System.out.println("8: Exit ");
+
 
             Scanner scanner=new Scanner(System.in);
             int num=scanner.nextInt();
@@ -432,6 +433,10 @@ public class Main {
                     }
                     break;
 
+
+                case 8:
+                    exit=true;
+                    break;
             }
 
         }
