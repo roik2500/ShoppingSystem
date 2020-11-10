@@ -306,7 +306,8 @@ public class Main {
 
 
                                     case 2://Display order
-                                        last_order.printinfo();
+                                        if(last_order!=null)
+                                            last_order.printinfo();
                                         break;
 
                                     case 3://Link Product
