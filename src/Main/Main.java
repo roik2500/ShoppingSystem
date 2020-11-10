@@ -363,6 +363,8 @@ public class Main {
 
                     Supplier new_supplier = new Supplier(supplier_id, supplier_name);
                     Product new_product = new Product(product_id, product_name, Integer.parseInt(product_price), new_supplier);
+                    new_supplier.setHashProducts(new_product.getId(),new_product);
+
 
                     //add supplier and product to our data structure
                     AllObjects.put(Integer.toString(counter), new_product);

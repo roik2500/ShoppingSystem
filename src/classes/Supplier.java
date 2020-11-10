@@ -57,7 +57,8 @@ public class Supplier {
         System.out.println("Object's name: " + this.name );
         System.out.println("and object's id:" + this.id);
         if(!this.hashProducts.isEmpty())
-            System.out.println("Object connecting: Product");
+            for(Product p:hashProducts.values())
+                System.out.println(p);
         else
             System.out.println("Object connecting: no body");
     }
