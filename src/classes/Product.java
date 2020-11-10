@@ -97,13 +97,14 @@ public class Product {
     }
 
     public void print() {
-        System.out.println("Object's id: " + this.id + ", object's name: " + this.name+ ", object's price: " + this.price);
+        System.out.println("Object's id: " + this.id + ", object's name: " + this.name+ ", object's price: " + this.price + "Object's quantity: " + this.quantity);
     }
 
     public void printInfo(){
         System.out.println("Object's id: " + this.id );
         System.out.println("Object's name: " + this.name);
         System.out.println("Object's price: " + this.price);
+        System.out.println("Object's quantity: " + this.quantity);
         System.out.println("Object connecting: ");
         if(this.supplier !=null)
             System.out.println(supplier);
