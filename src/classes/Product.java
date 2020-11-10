@@ -97,7 +97,7 @@ public class Product {
     }
 
     public void print() {
-        System.out.println("Object's id: " + this.id + ", object's name: " + this.name+ ", object's price: " + this.price + "Object's quantity: " + this.quantity);
+        System.out.println("Object's id: " + this.id + ", object's name: " + this.name+ ", object's price: " + this.price + ", object's quantity: " + this.quantity);
     }
 
     public void printInfo(){
