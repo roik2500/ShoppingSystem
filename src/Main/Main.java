@@ -9,12 +9,13 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 import static enums.UseState.Active;
 
 public class Main {
 
-    public static void main(String[] args) throws ParseException {
+    public static void main(String[] args) throws ParseException, InterruptedException {
         //when the user log in we add him to hashmap "connected" by the login_id
        // HashMap<String, String> users= new HashMap<String, String>();//all the users in the system
         //HashMap<String,String> AllProducts= new HashMap<String, String>();
@@ -151,6 +152,7 @@ public class Main {
                     {
                         Account account1 = new Account(accountId,customer);//3
 
+
                         //add account1 to to Allobject and add the ID to the arraylist in IdListUsers
                         AllObjects.put(Integer.toString(counter),account1);
                         IdListUsers.get(WebUser.getLogin_id()).add(Integer.toString(counter));
@@ -171,6 +173,7 @@ public class Main {
                         //*** ADD THE OBJECTS!!***//
 
                     }
+
                     break;
 
 
@@ -308,10 +311,13 @@ public class Main {
                                     case 2://Display order
                                         if(last_order!=null)
                                             last_order.printinfo();
+                                        else {
+                                            System.out.println("The order is doesnt exist, please make order before");
+                                            TimeUnit.SECONDS.sleep(2);
+                                        }
                                         break;
 
                                     case 3://Link Product
-
                                         if (connect.getCustomer().getAccount().isPremiumAccount()) { //checking if preimumAccount
                                             PremiumAccount premiumAccount = (PremiumAccount) connect.getCustomer().getAccount();
                                             System.out.println("Enter a product name");
@@ -371,7 +377,6 @@ public class Main {
                     AllObjects.put(Integer.toString(counter), new_product);
                     counter++;
                     AllObjects.put(Integer.toString(counter), new_supplier);
-                    counter++;
                     IdListProducts.put(product_id,new ArrayList<String>());
                     IdListProducts.get(product_id).add(Integer.toString(counter));
                     counter++;
