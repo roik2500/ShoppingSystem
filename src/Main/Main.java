@@ -213,6 +213,8 @@ public class Main {
                                         if (seller.getCustomer().getAccount().isPremiumAccount()) {
                                             PremiumAccount premiumAccount= (PremiumAccount) seller.getCustomer().getAccount();
                                             boolean buy = true;
+                                            int prodamunt=0;
+                                            Order newOrder=null;
                                             while (buy == true) {
                                                 premiumAccount.printProduct();//show all products
                                                 System.out.println("Please enter id of the product you want");
@@ -220,18 +222,24 @@ public class Main {
                                                 System.out.println("Please enter quantity");
                                                 String quan = scanner.next();//ask for quantity
                                                 int quantity=Integer.parseInt(quan);
-                                                System.out.println("Please enter order number");
-                                                String number = scanner.next();
-                                                System.out.println("Please enter date to deliver(yyyy-MM-dd)");
-                                                String date = scanner.next();
-                                                Date today = new Date();
-                                                Date deliver = new SimpleDateFormat("yyyy-MM-dd").parse(date);
-                                                int price=premiumAccount.getHash_Product().get(prod).getPrice();
-                                                //make new order and line item
-                                                Order newOrder=new Order(number,today,deliver, connect.getCustomer().getAddress(), OrderStatus.New,quantity*price);
+                                                int price = premiumAccount.getHash_Product().get(prod).getPrice();
+                                                if(prodamunt==0) {
+                                                    System.out.println("Please enter order number");
+                                                    String number = scanner.next();
+                                                    System.out.println("Please enter date to deliver(yyyy-MM-dd)");
+                                                    String date = scanner.next();
+                                                    int amount = premiumAccount.getHash_Product().get(prod).getQuantity();
+                                                    premiumAccount.getHash_Product().get(prod).setQuantity(amount - quantity);//lowers the amount
+                                                    Date today = new Date();
+                                                    Date deliver = new SimpleDateFormat("yyyy-MM-dd").parse(date);
+                                                    //make new order
+                                                     newOrder = new Order(number, today, deliver, connect.getCustomer().getAddress(), OrderStatus.New, quantity * price);
+                                                    last_order=newOrder;//save last
+                                                }
+                                                //make line item
                                                 LineItem lineItem=new LineItem(quantity,price,newOrder,connect.getShoppingCart(),premiumAccount.getHash_Product().get(prod));
-                                                connect.getCustomer().getAccount().UpdateHashOrders(newOrder);//connect the order to the account order hash
                                                 newOrder.UpdateListLineItems(lineItem);
+
                                                 premiumAccount.setBalanced((int) (premiumAccount.getBalanced()+newOrder.getTotal()));
                                                 total=total+quantity*price;
                                                 //add order and line item to our data structure
@@ -241,14 +249,15 @@ public class Main {
                                                 AllObjects.put(Integer.toString(counter), lineItem);
                                                 IdListProducts.get(prod).add(Integer.toString(counter));
                                                 counter++;
-                                                last_order=newOrder;//save last
 
-
-
-
+                                                
                                                 System.out.println("Do you want to continue buying?(yes/no)");
                                                 String stay = scanner.next();
                                                 if (stay.equals("no")) {
+                                                    newOrder.setTotal(total);
+                                                    connect.getCustomer().getAccount().UpdateHashOrders(newOrder);//connect the order to the account order hash
+                                                    newOrder.setAccount(connect.getCustomer().getAccount());//set order account
+
                                                     System.out.println("How do you want to pay?(D/I)");
                                                     String pay = scanner.next();
                                                     System.out.println("Please enter payment id");
@@ -285,6 +294,7 @@ public class Main {
 
                                                     buy = false;
                                                 }
+
                                             }
                                         } else {
                                             System.out.println("This is not a premium account");
