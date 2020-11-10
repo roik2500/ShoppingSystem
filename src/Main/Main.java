@@ -308,6 +308,14 @@ public class Main {
                                             if (product.getPremiumAccount() == null) {
                                                 product.setPremiumAccount(premiumAccount);
                                                 premiumAccount.UpdateHashProduct(product);
+                                                System.out.println("Enter a product price");
+                                                int temp =Integer.parseInt( scanner.next());
+                                                product.setPrice(temp);
+                                                System.out.println("Enter a product quantity");
+                                                temp = Integer.parseInt( scanner.next());
+                                                product.setQuantity(temp);
+
+
                                             }
                                         }
                                         break;

@@ -7,6 +7,7 @@ public class Product {
     private String id; //the usual filed that given
     private String name;
     private int price;  //maybe need to be added
+    private int quantity;
     private Supplier supplier;
     private ArrayList<LineItem> listLineItems;
     private PremiumAccount premiumAccount;
@@ -39,6 +40,10 @@ public class Product {
         return price;
     }
 
+    public int getQuantity() {
+        return quantity;
+    }
+
     public ArrayList<LineItem> getListLineItems() {
         return listLineItems;
     }
@@ -57,6 +62,14 @@ public class Product {
 
     public void setPremiumAccount(PremiumAccount premiumAccount) {
         this.premiumAccount = premiumAccount;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     //delete functions
