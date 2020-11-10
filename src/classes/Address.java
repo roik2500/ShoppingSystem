@@ -13,4 +13,11 @@ public class Address {
         if(address == null)
             this.address = address;
     }
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "address='" + address + '\'' +
+                '}';
+    }
 }

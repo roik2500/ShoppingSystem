@@ -14,8 +14,11 @@ public class PremiumAccount extends Account {
         hash_Product = new HashMap<String,Product>();
     }
 
-
-   /* public PremiumAccount(String id, String billing_address, Date open, int balanced) {
+    public PremiumAccount(String id, String billing_address, Date open, int balanced) {
+        super(id, billing_address, open, balanced);
+        hash_Product = new HashMap<String,Product>();
+    }
+    /* public PremiumAccount(String id, String billing_address, Date open, int balanced) {
         super(id,billing_address,open,balanced);
         hash_Product = new HashMap<String,Product>();
     } */

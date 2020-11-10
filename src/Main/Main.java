@@ -105,7 +105,7 @@ public class Main {
                     System.out.println("Enter billing address account:");
                     String accountBillingAddress = scanner.next();
                     System.out.println("Enter account balance:");
-                    String accountBalance =  scanner.next();
+                    int accountBalance = Integer.parseInt(scanner.next());
                     System.out.println("Is a premium account? y/n");
                     String isPremium = scanner.next();
 
@@ -128,7 +128,8 @@ public class Main {
 
 
                     if(isPremium.equals("y")) {
-                        PremiumAccount premiumAccount = new PremiumAccount(accountId,customer);//3
+                        PremiumAccount premiumAccount = new PremiumAccount(accountId,accountBillingAddress,new Date(),accountBalance );//3
+                        premiumAccount.setCustomer(customer);
 
                         //add premiumAccount to to Allobject and add the ID to the arraylist in IdListUsers
                         AllObjects.put(Integer.toString(counter),premiumAccount);
@@ -150,9 +151,8 @@ public class Main {
                     }
                     else
                     {
-                        Account account1 = new Account(accountId,customer);//3
-
-
+                        Account account1 = new Account(accountId,accountBillingAddress,new Date(),accountBalance );//3
+                        account1.setCustomer(customer);
                         //add account1 to to Allobject and add the ID to the arraylist in IdListUsers
                         AllObjects.put(Integer.toString(counter),account1);
                         IdListUsers.get(WebUser.getLogin_id()).add(Integer.toString(counter));
@@ -173,7 +173,6 @@ public class Main {
                         //*** ADD THE OBJECTS!!***//
 
                     }
-
                     break;
 
 
