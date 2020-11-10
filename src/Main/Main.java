@@ -277,6 +277,7 @@ public class Main {
                                                         connect.getCustomer().getAccount().UpdateHashPayments(delayedPayment);
                                                         AllObjects.put(Integer.toString(counter), delayedPayment);
                                                         IdListUsers.get(connect.getLogin_id()).add(Integer.toString(counter));
+                                                        newOrder.UpdateHashPayments(delayedPayment);
                                                         counter++;
                                                     }
                                                     else {
@@ -291,6 +292,7 @@ public class Main {
                                                         connect.getCustomer().getAccount().UpdateHashPayments(immediatePayment);
                                                         AllObjects.put(Integer.toString(counter), immediatePayment);
                                                         IdListUsers.get(connect.getLogin_id()).add(Integer.toString(counter));
+                                                        newOrder.UpdateHashPayments(immediatePayment);
                                                         counter++;
                                                     }
                                                     connect.getCustomer().getAccount().setBalanced((int) (connect.getCustomer().getAccount().getBalanced()-total));
