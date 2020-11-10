@@ -221,9 +221,10 @@ public class Main {
                                                 String prod = scanner.next();//choose product
                                                 System.out.println("Please enter quantity");
                                                 String quan = scanner.next();//ask for quantity
+                                                prodamunt++;
                                                 int quantity=Integer.parseInt(quan);
                                                 int price = premiumAccount.getHash_Product().get(prod).getPrice();
-                                                if(prodamunt==0) {
+                                                if(prodamunt==1) {
                                                     System.out.println("Please enter order number");
                                                     String number = scanner.next();
                                                     System.out.println("Please enter date to deliver(yyyy-MM-dd)");
@@ -250,7 +251,7 @@ public class Main {
                                                 IdListProducts.get(prod).add(Integer.toString(counter));
                                                 counter++;
 
-                                                
+
                                                 System.out.println("Do you want to continue buying?(yes/no)");
                                                 String stay = scanner.next();
                                                 if (stay.equals("no")) {
