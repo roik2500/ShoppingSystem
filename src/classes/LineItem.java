@@ -27,7 +27,7 @@ public class LineItem {
     }
 
     public void print(){
-        System.out.println("quantity: " + quantity + "price:" + price);
+        System.out.println("quantity:" + quantity + " ,price:" + price);
     }
 
     public void printinfo(){

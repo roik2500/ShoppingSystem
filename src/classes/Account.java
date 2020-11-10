@@ -17,6 +17,10 @@ public class Account {
     protected boolean hasCustomer;
     protected boolean hasShoppingCart;
 
+
+
+    protected Order LastOrder;
+
 //protected  boolean isPremiumAccount;
 
     public Account(String id, Customer customer) {
@@ -28,6 +32,7 @@ public class Account {
         hasShoppingCart=false;
         this.closed = null;
         this.is_closed = true;
+        this.LastOrder=null;
     }
 
     public Account(String id, String billing_address, Date open, int balanced) {
@@ -41,6 +46,7 @@ public class Account {
         hash_Payment = new HashMap<String,Payment>();
         hasCustomer=false;
         hasShoppingCart=false;
+        this.LastOrder=null;
     }
 
 
@@ -51,12 +57,15 @@ public class Account {
         hasCustomer=false;
         this.closed = null;
         this.is_closed = true;
+        this.LastOrder=null;
     }
 
     public void UpdateHashOrders(Order order)
     {
-        if(!hash_Order.containsKey(order.getNumber()))
+        if(!hash_Order.containsKey(order.getNumber())){
             hash_Order.put(order.getNumber(),order);
+            LastOrder=order;
+        }
     }
 
     public void UpdateHashPayments(Payment payment)
@@ -205,5 +214,8 @@ public class Account {
 
     public Order getorder(String s){
         return hash_Order.get(s);
+    }
+    public Order getLastOrder() {
+        return LastOrder;
     }
 }

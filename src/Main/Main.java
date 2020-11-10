@@ -16,15 +16,12 @@ import static enums.UseState.Active;
 public class Main {
 
     public static void main(String[] args) throws ParseException, InterruptedException {
-        //when the user log in we add him to hashmap "connected" by the login_id
-       // HashMap<String, String> users= new HashMap<String, String>();//all the users in the system
-        //HashMap<String,String> AllProducts= new HashMap<String, String>();
         HashMap<String,Object> AllObjects= new HashMap<String, Object>();
         HashMap<String, ArrayList<String>> IdListUsers= new HashMap<String, ArrayList<String>>();
         HashMap<String, ArrayList<String>> IdListProducts= new HashMap<String, ArrayList<String>>();
         Account connected;
 
-        //////////Already exist in the System (נתון לנו)////////////
+        //////////Already exist in the System ////////////
         Supplier moshe=new Supplier("123","Moshe");
         AllObjects.put("1",moshe);
         Product bamba=new Product("Bamba", "Bamba",4,moshe);
@@ -58,7 +55,6 @@ public class Main {
         AllObjects.put("7",shoppingCart1);
         IdListUsers.get(webUser.getLogin_id()).add("7");
         webUser.getCustomer().setAddress(new Address("13213"));
-       //need to finish that!!!???!!
         int counter = 8; // counter global
 
         while (true){
@@ -72,7 +68,6 @@ public class Main {
 
             Scanner scanner=new Scanner(System.in);
             int num=scanner.nextInt();
-            //String loginIDToRemove=scanner.next();
             String login;
             String password;
             Order last_order=null;
@@ -237,7 +232,6 @@ public class Main {
                                                     Date deliver = new SimpleDateFormat("yyyy-MM-dd").parse(date);
                                                     //make new order
                                                      newOrder = new Order(number, today, deliver, connect.getCustomer().getAddress(), OrderStatus.New, quantity * price);
-                                                    last_order=newOrder;//save last
                                                 }
                                                 //make line item
                                                 LineItem lineItem=new LineItem(quantity,price,newOrder,connect.getShoppingCart(),premiumAccount.getHash_Product().get(prod));
@@ -267,7 +261,6 @@ public class Main {
                                                     String payid = scanner.next();
                                                     System.out.println("Please enter date to pay(yyyy-MM-dd)");
                                                     String paydate = scanner.next();
-                                                    Date todaypay = new Date();
                                                     Date deliverpay = new SimpleDateFormat("yyyy-MM-dd").parse(paydate);
                                                     System.out.println("Please enter more details");
                                                     String details = scanner.next();
@@ -304,14 +297,12 @@ public class Main {
                                         } else {
                                             System.out.println("This is not a premium account");
                                         }
-
-
                                         break;
 
 
                                     case 2://Display order
-                                        if(last_order!=null)
-                                            last_order.printinfo();
+                                        if(connect.getCustomer().getAccount().getLastOrder()!=null)
+                                            connect.getCustomer().getAccount().getLastOrder().printinfo();
                                         else {
                                             System.out.println("The order is doesnt exist, please make order before");
                                             TimeUnit.SECONDS.sleep(2);
@@ -333,8 +324,6 @@ public class Main {
                                                 System.out.println("Enter a product quantity");
                                                 temp = Integer.parseInt( scanner.next());
                                                 product.setQuantity(temp);
-
-
                                             }
                                         }
                                         break;
@@ -376,13 +365,12 @@ public class Main {
 
                     //add supplier and product to our data structure
                     AllObjects.put(Integer.toString(counter), new_product);
-                    counter++;
-                    AllObjects.put(Integer.toString(counter), new_supplier);
                     IdListProducts.put(product_id,new ArrayList<String>());
                     IdListProducts.get(product_id).add(Integer.toString(counter));
                     counter++;
+                    AllObjects.put(Integer.toString(counter), new_supplier);
+                    counter++;
                     break;
-
 
                 case 5://Delete Product
                     System.out.println("Please enter a product id tp delete");
@@ -405,14 +393,6 @@ public class Main {
                         System.out.println("Object's id:" + idO + ", object's name: " + Ob.toString());
                     }
                     break;
-             /*       for (String Id : IdListUsers.keySet()) {
-                       WebUser webUser1=(WebUser)AllObjects.get(IdListProducts.get(Id));
-                        System.out.println("Object's id:" + Id + ", object's name: " + webUser.toString());
-                    }
-                    for (String idP : AllProducts.keySet()) {
-                        Product proud = AllProducts.get(idP);
-                        System.out.println("Object's id:" + idP + ", object's name: " + proud.toString());
-                    }*/
 
 
                 case 7://ShowObjectById
@@ -433,7 +413,7 @@ public class Main {
                         temp.printinfo();
                     } else if (ob instanceof LineItem) {
                         LineItem temp = (LineItem) ob;
-                        temp.print();
+                        temp.printinfo();
                     } else if (ob instanceof Order) {
                         Order temp = (Order) ob;
                         temp.printinfo();
