@@ -53,7 +53,29 @@ public class Main {
         AllObjects.put("7",shoppingCart1);
         IdListUsers.get(webUser.getLogin_id()).add("7");
         webUser.getCustomer().setAddress(new Address("13213"));
-        int counter = 8; // counter global
+
+        WebUser webUser2=new WebUser("Dana", "Dana123");
+        AllObjects.put("8",webUser2);;
+
+        IdListUsers.put(webUser2.getLogin_id(),new ArrayList<String>());
+        IdListUsers.get(webUser2.getLogin_id()).add("8");
+        Customer customer2 =new Customer(webUser2);
+        webUser2.setCustomer(customer2);
+        AllObjects.put("9",customer2);
+        IdListUsers.get(webUser2.getLogin_id()).add("9");
+        PremiumAccount premiumAccount2=new PremiumAccount("4564",customer2);
+        AllObjects.put("10",premiumAccount2);
+        IdListUsers.get(webUser2.getLogin_id()).add("10");
+        customer2.setAccount(premiumAccount2);
+        ShoppingCart shoppingCart2 =new ShoppingCart(premiumAccount2,webUser2,new Date());
+        premiumAccount2.setShoppingCart(shoppingCart2);
+        AllObjects.put("11",shoppingCart2);
+        IdListUsers.get(webUser2.getLogin_id()).add("11");
+        webUser2.getCustomer().setAddress(new Address("13213"));
+        premiumAccount2.UpdateHashProduct(bamba);
+        bamba.setPremiumAccount(premiumAccount2);
+        bamba.setQuantity(50);
+        int counter = 12; // counter global
         boolean exit=false;
 
         while (exit!=true){
